@@ -1,5 +1,6 @@
 package scc;
 
+import scc.converterFunctionality.ConverterController;
 import scc.view.UserInterface;
 
 public class App {
@@ -37,7 +38,8 @@ public class App {
     }
 
     private void run(String[] args) {
-
+        ConverterController converterController = new ConverterController();
+        converterController.runController(args);
     }
 
     private void handleNoAction() {
