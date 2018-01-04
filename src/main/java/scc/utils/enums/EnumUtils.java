@@ -31,7 +31,7 @@ public class EnumUtils<E extends Enum<E>> {
                                                                                  .equals(identity);
 
         return Arrays.stream(enumConstants)
-                .filter(e -> isEqualByName.test(e, givenName))
-                .findFirst();
+                     .filter(e -> isEqualByName.test(e, givenName))
+                     .findFirst();
     }
 }
