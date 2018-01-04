@@ -3,6 +3,8 @@ package scc.converterFunctionality.services;
 import scc.converterFunctionality.OutputFormat;
 
 public class OutputFormatterFactory {
+    private static final OutputFormat defaultOutputFormat = OutputFormat.TABLE;
+
     public OutputFormatter createByFormat(OutputFormat outputFormat) {
         switch (outputFormat) {
             case XML:
@@ -17,5 +19,9 @@ public class OutputFormatterFactory {
             default:
                 throw new IllegalArgumentException("Asked for non existing OutputFormatter");
         }
+    }
+
+    public OutputFormatter getDefaultOutputFormatter() {
+        return createByFormat(defaultOutputFormat);
     }
 }
