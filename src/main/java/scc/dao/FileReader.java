@@ -8,10 +8,10 @@ import java.util.*;
 
 public class FileReader {
 
-    public Iterator<String> readData(String path) throws DAOException {
+    public Iterator<String[]> readData(String path, String delimiter) throws DAOException {
 
         try (Scanner file = openFile(path)) {
-            List<String> retrievedData = readFile(file);
+            List<String[]> retrievedData = readFile(file, delimiter);
             return retrievedData.iterator();
 
         } catch (FileNotFoundException e) {
@@ -23,12 +23,12 @@ public class FileReader {
         return new Scanner(new File(filename));
     }
 
-    private List<String> readFile(Scanner file) {
-        List<String> tempDataContainer = new ArrayList<>();
+    private List<String[]> readFile(Scanner file, String delimiter) {
+        List<String[]> tempDataContainer = new ArrayList<>();
 
         while (file.hasNextLine()) {
             String line = file.nextLine();
-            tempDataContainer.add(line);
+            tempDataContainer.add(line.split(delimiter));
         }
 
         return tempDataContainer;
