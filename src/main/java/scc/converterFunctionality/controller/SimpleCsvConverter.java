@@ -4,6 +4,7 @@ import scc.converterFunctionality.OutputFormat;
 import scc.converterFunctionality.services.OutputFormatter;
 import scc.converterFunctionality.services.OutputFormatterFactory;
 import scc.dao.FileReader;
+import scc.exception.DAOException;
 
 public class SimpleCsvConverter {
     private final FileReader fileReader;
@@ -16,12 +17,12 @@ public class SimpleCsvConverter {
 
     public void convert(String pathToFile, OutputFormat outputFormat) {
         OutputFormatter outputFormatter = this.outputFormatterFactory.createByFormat(outputFormat);
-        System.out.println(" i convert csv to specified output format");
+
     }
 
-    public void convert(String pathToFile) {
+    public void convert(String pathToFile) throws DAOException {
         OutputFormatter outputFormatter = this.outputFormatterFactory.getDefaultOutputFormatter();
-
+        this.fileReader.readData(pathToFile);
         System.out.println("I convert CSV to Output format(DEFAULT == TABLE FORMAT)");
     }
 }

@@ -3,6 +3,7 @@ package scc.converterFunctionality.controller;
 import scc.converterFunctionality.OutputFormat;
 import scc.converterFunctionality.services.OutputFormatterFactory;
 import scc.dao.FileReader;
+import scc.exception.DAOException;
 import scc.view.UserInterface;
 
 public class ConverterStarter {
@@ -20,7 +21,7 @@ public class ConverterStarter {
         SUCCESFULLY_LOADED
     }
 
-    public void runStarter() {
+    public void runStarter() throws DAOException {
         ConverterAction action = getChosenAction();
 
         switch (action) {
@@ -41,7 +42,7 @@ public class ConverterStarter {
         return this.args.length == 0 || this.args.length > 2 ? ConverterAction.FAILED : ConverterAction.SUCCESFULLY_LOADED;
     }
 
-    private void run() {
+    private void run() throws DAOException {
         SimpleCsvConverter simpleCsvConverter = new SimpleCsvConverter(new FileReader(), new OutputFormatterFactory());
 
         if (this.args.length == 1) {
