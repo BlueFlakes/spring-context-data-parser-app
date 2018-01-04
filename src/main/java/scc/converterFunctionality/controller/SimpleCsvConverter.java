@@ -3,7 +3,7 @@ package scc.converterFunctionality.controller;
 import scc.converterFunctionality.OutputFormat;
 import scc.converterFunctionality.services.OutputFormatter;
 import scc.converterFunctionality.services.OutputFormatterFactory;
-import scc.utils.dao.FileReader;
+import scc.dao.FileReader;
 
 public class SimpleCsvConverter {
     private final FileReader fileReader;
@@ -20,7 +20,8 @@ public class SimpleCsvConverter {
     }
 
     public void convert(String pathToFile) {
-        OutputFormatter outputFormatter = this.outputFormatterFactory.createByFormat(OutputFormat.TABLE);
+        OutputFormatter outputFormatter = this.outputFormatterFactory.getDefaultOutputFormatter();
+
         System.out.println("I convert CSV to Output format(DEFAULT == TABLE FORMAT)");
     }
 }

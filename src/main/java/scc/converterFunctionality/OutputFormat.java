@@ -11,7 +11,11 @@ public enum OutputFormat {
 
     private static EnumUtils<OutputFormat> enumUtils = new EnumUtils<>();
 
-    public static Optional<OutputFormat> getByName(String name) {
+    public static OutputFormat getByName(String name) {
         return enumUtils.getValue(OutputFormat.class, name);
+    }
+
+    public static boolean isAvailable(String name) {
+        return enumUtils.getValue(OutputFormat.class, name) != null;
     }
 }

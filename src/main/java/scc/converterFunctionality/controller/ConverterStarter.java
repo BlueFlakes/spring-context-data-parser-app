@@ -2,11 +2,8 @@ package scc.converterFunctionality.controller;
 
 import scc.converterFunctionality.OutputFormat;
 import scc.converterFunctionality.services.OutputFormatterFactory;
-import scc.utils.dao.FileReader;
+import scc.dao.FileReader;
 import scc.view.UserInterface;
-
-import java.util.Optional;
-
 
 public class ConverterStarter {
 
@@ -52,16 +49,20 @@ public class ConverterStarter {
             simpleCsvConverter.convert(pathToFile);
 
         } else if (this.args.length == 2) {
-            handleParametrizedCommand(simpleCsvConverter);
+            handleParametrizedConversion(simpleCsvConverter);
         }
     }
 
-    private void handleParametrizedCommand(SimpleCsvConverter simpleCsvConverter) {
-        String expectedFormatName = this.args[0].toUpperCase();
+    private void handleParametrizedConversion(SimpleCsvConverter simpleCsvConverter) {
+        String givenFormatName = this.args[0];
         String pathToFile = this.args[1];
 
-        Optional<OutputFormat> expectedFormat = OutputFormat.getByName(expectedFormatName);
-        expectedFormat.ifPresent(outputFormat -> simpleCsvConverter.convert(pathToFile, outputFormat));
+        if (OutputFormat.isAvailable(givenFormatName)) {
+            OutputFormat expectedFormat = OutputFormat.getByName(givenFormatName);
+            simpleCsvConverter.convert(pathToFile, expectedFormat);
+        } else {
+            userInterface.println("Given format name is not available.");
+        }
     }
 
     private void handleNoAction() {
