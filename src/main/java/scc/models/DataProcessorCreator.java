@@ -10,6 +10,8 @@ import scc.services.converterServices.formatter.OutputFormatterFactory;
 import scc.services.converterServices.printer.OutputPrinter;
 import scc.services.converterServices.printer.OutputPrinterFactory;
 
+import java.util.List;
+
 public class DataProcessorCreator {
     private OutputFormatterFactory formatterFactory;
     private OutputPrinterFactory printerFactory;
@@ -39,8 +41,9 @@ public class DataProcessorCreator {
             this.printer = printer;
         }
 
-        public void process() {
-            System.out.println("Processing data....");
+        public void process(List<String[]> loadedData) {
+            String formattedData = this.formatter.getFormattedData(loadedData);
+            this.printer.print(formattedData);
         }
     }
 

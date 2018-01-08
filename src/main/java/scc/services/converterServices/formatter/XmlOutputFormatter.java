@@ -1,10 +1,10 @@
 package scc.services.converterServices.formatter;
 
-import java.util.Iterator;
+import java.util.List;
 
 public class XmlOutputFormatter implements OutputFormatter {
     @Override
-    public String getFormattedData(Iterator<String[]> data) {
+    public String getFormattedData(List<String[]> data) {
         return null;
     }
 }

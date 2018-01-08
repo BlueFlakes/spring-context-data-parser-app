@@ -1,7 +1,7 @@
 package scc.services.converterServices.formatter;
 
-import java.util.Iterator;
+import java.util.List;
 
 public interface OutputFormatter {
-    String getFormattedData(Iterator<String[]> data);
+    String getFormattedData(List<String[]> data);
 }

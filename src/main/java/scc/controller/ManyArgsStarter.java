@@ -1,19 +1,15 @@
 package scc.controller;
 
+import scc.dao.ReaderCreatorFactory;
 import scc.enums.OutputFormat;
 
 public class ManyArgsStarter implements ConverterStarter {
+    private String[] args;
+    private ReaderCreatorFactory readerCreatorFactory;
 
-    private OutputFormat outputFormat;
-    private String pathToFile;
-
-    public ManyArgsStarter(String[] args) {
-        String upperCaseFormatName = args[0].toUpperCase();
-        this.outputFormat = OutputFormat.getByName(upperCaseFormatName);
-
-        this.pathToFile = args[1];
-
-        // TODO handle many args where many is >= 2
+    public ManyArgsStarter(String[] args, ReaderCreatorFactory readerCreatorFactory) {
+        this.args = args;
+        this.readerCreatorFactory = readerCreatorFactory;
     }
 
     @Override
