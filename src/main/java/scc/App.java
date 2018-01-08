@@ -1,18 +1,24 @@
 package scc;
 
-import scc.converterFunctionality.controller.ConverterStarter;
-import scc.exception.DAOException;
-import scc.view.UserInterface;
+
+import scc.controller.ConverterStarterFactory;
+import scc.exception.InvalidArgsAmountException;
+import scc.controller.ConverterStarter;
 
 public class App {
     public static void main(String[] args) {
-        ConverterStarter starter = new ConverterStarter(new UserInterface(), args);
 
         try {
-            starter.runStarter();
+            ConverterStarter starter = new ConverterStarterFactory().getProperStarter(args);
+            starter.start();
 
-        } catch (DAOException e) {
+        } catch (InvalidArgsAmountException e) {
+            e.printStackTrace();
             System.out.println(e.getMessage());
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+
     }
 }
