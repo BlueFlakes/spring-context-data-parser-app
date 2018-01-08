@@ -44,6 +44,18 @@ public class ConverterCreator {
         }
     }
 
+    public DataProcessor createDefaultDataProcessor()
+            throws InvalidOutputPrinterException, InvalidOutputFormatterException {
+
+        final OutputFormat defaultFormat = OutputFormat.TABLE;
+        final PrinterType defaultPrinterType = PrinterType.PRINT_TO_CONSOLE;
+
+        ConverterCreator.ProcessorBuildingBlocks processorBuildingBlocks =
+                new ConverterCreator.ProcessorBuildingBlocks(defaultFormat, defaultPrinterType);
+
+        return createDataProcessor(processorBuildingBlocks);
+    }
+
     public DataProcessor createDataProcessor(ProcessorBuildingBlocks buildingBlocks)
             throws InvalidOutputPrinterException, InvalidOutputFormatterException {
         OutputFormat outputFormat = buildingBlocks.getOutputFormat();
