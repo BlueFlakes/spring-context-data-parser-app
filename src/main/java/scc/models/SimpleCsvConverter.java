@@ -1,38 +1,47 @@
-package scc.controller;
+package scc.models;
 
+import scc.dao.CsvReader;
 import scc.enums.OutputFormat;
-import scc.exception.InvalidOutputFormatterException;
-import scc.services.converterServices.formatter.OutputFormatter;
-import scc.dao.FileReader;
+import scc.enums.PrinterType;
 import scc.exception.DAOException;
-import scc.services.converterServices.formatter.OutputFormatterFactory;
-import scc.services.converterServices.printer.OutputPrinterFactory;
+import scc.exception.InvalidOutputFormatterException;
+import scc.exception.InvalidOutputPrinterException;
 
 import java.util.Iterator;
 
 public class SimpleCsvConverter {
-    private final FileReader fileReader;
-    private final OutputFormatterFactory outputFormatterFactory;
-    private final OutputPrinterFactory outputPrinterFactory;
+    private final CsvReader csvReader;
+    private final ConverterCreator converterCreator;
 
-    public SimpleCsvConverter(FileReader fileReader,
-                              OutputFormatterFactory outputFormatterFactory,
-                              OutputPrinterFactory outputPrinterFactory) {
-
-        this.fileReader = fileReader;
-        this.outputFormatterFactory = outputFormatterFactory;
-        this.outputPrinterFactory = outputPrinterFactory;
+    public SimpleCsvConverter(CsvReader csvReader, ConverterCreator converterCreator) {
+        this.csvReader = csvReader;
+        this.converterCreator = converterCreator;
     }
 
-    public void convert(String pathToFile, OutputFormat outputFormat) throws InvalidOutputFormatterException {
-        OutputFormatter outputFormatter = this.outputFormatterFactory.createByFormat(outputFormat);
+    public void convert(String pathToFile, ConverterCreator.ProcessorBuildingBlocks processorBuildingBlocks)
+            throws DAOException, InvalidOutputFormatterException, InvalidOutputPrinterException {
+
+        ConverterCreator.DataProcessor dataProcessor = this.converterCreator.createDataProcessor(processorBuildingBlocks);
+        Iterator<String[]> loadedData = this.csvReader.readData(pathToFile);
 
     }
 
-    public void convert(String pathToFile) throws DAOException, InvalidOutputFormatterException {
-        OutputFormatter outputFormatter = this.outputFormatterFactory.getDefaultOutputFormatter();
-        Iterator<String> loadedData = this.fileReader.readData(pathToFile);
+    public void convert(String pathToFile) throws DAOException, InvalidOutputFormatterException, InvalidOutputPrinterException {
+        ConverterCreator.DataProcessor dataProcessor = createDefaultDataProcessor();
+        Iterator<String[]> loadedData = this.csvReader.readData(pathToFile);
 
-//        outputFormatter.getFormattedData()
+
+    }
+
+    private ConverterCreator.DataProcessor createDefaultDataProcessor()
+            throws InvalidOutputPrinterException, InvalidOutputFormatterException {
+
+        final OutputFormat defaultFormat = OutputFormat.TABLE;
+        final PrinterType defaultPrinterType = PrinterType.PRINT_TO_CONSOLE;
+
+        ConverterCreator.ProcessorBuildingBlocks processorBuildingBlocks =
+                new ConverterCreator.ProcessorBuildingBlocks(defaultFormat, defaultPrinterType);
+
+        return this.converterCreator.createDataProcessor(processorBuildingBlocks);
     }
 }
