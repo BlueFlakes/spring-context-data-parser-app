@@ -1,14 +1,13 @@
 package scc.models;
 
-import lombok.Getter;
 import scc.enums.OutputFormat;
 import scc.enums.PrinterType;
 import scc.exception.InvalidOutputFormatterException;
 import scc.exception.InvalidOutputPrinterException;
-import scc.services.converterServices.formatter.OutputFormatter;
-import scc.services.converterServices.formatter.OutputFormatterFactory;
-import scc.services.converterServices.printer.OutputPrinter;
-import scc.services.converterServices.printer.OutputPrinterFactory;
+import scc.services.formatter.OutputFormatter;
+import scc.services.formatter.OutputFormatterFactory;
+import scc.services.printer.OutputPrinter;
+import scc.services.printer.OutputPrinterFactory;
 
 import java.util.List;
 
@@ -21,15 +20,27 @@ public class DataProcessorCreator {
         this.printerFactory = printerFactory;
     }
 
-    @Getter
-    public static class ProcessorBuildingBlocks {
-        private final OutputFormat outputFormat;
-        private final PrinterType printerType;
+    public DataProcessor createDefaultDataProcessor()
+            throws InvalidOutputPrinterException, InvalidOutputFormatterException {
 
-        public ProcessorBuildingBlocks(OutputFormat outputFormat, PrinterType printerType) {
-            this.outputFormat = outputFormat;
-            this.printerType = printerType;
-        }
+        final OutputFormat defaultFormat = OutputFormat.TABLE;
+        final PrinterType defaultPrinterType = PrinterType.PRINT_TO_CONSOLE;
+
+        ProcessorBuildingBlocks processorBuildingBlocks =
+                new ProcessorBuildingBlocks(defaultFormat, defaultPrinterType);
+
+        return createDataProcessor(processorBuildingBlocks);
+    }
+
+    public DataProcessor createDataProcessor(ProcessorBuildingBlocks buildingBlocks)
+            throws InvalidOutputPrinterException, InvalidOutputFormatterException {
+        OutputFormat outputFormat = buildingBlocks.getOutputFormat();
+        OutputFormatter formatter = this.formatterFactory.createByFormat(outputFormat);
+
+        PrinterType printerType = buildingBlocks.getPrinterType();
+        OutputPrinter printer = this.printerFactory.getOutputPrinter(printerType);
+
+        return new DataProcessor(formatter, printer);
     }
 
     public class DataProcessor {
@@ -45,28 +56,5 @@ public class DataProcessorCreator {
             String formattedData = this.formatter.getFormattedData(loadedData);
             this.printer.print(formattedData);
         }
-    }
-
-    public DataProcessor createDefaultDataProcessor()
-            throws InvalidOutputPrinterException, InvalidOutputFormatterException {
-
-        final OutputFormat defaultFormat = OutputFormat.TABLE;
-        final PrinterType defaultPrinterType = PrinterType.PRINT_TO_CONSOLE;
-
-        DataProcessorCreator.ProcessorBuildingBlocks processorBuildingBlocks =
-                new DataProcessorCreator.ProcessorBuildingBlocks(defaultFormat, defaultPrinterType);
-
-        return createDataProcessor(processorBuildingBlocks);
-    }
-
-    public DataProcessor createDataProcessor(ProcessorBuildingBlocks buildingBlocks)
-            throws InvalidOutputPrinterException, InvalidOutputFormatterException {
-        OutputFormat outputFormat = buildingBlocks.getOutputFormat();
-        OutputFormatter formatter = this.formatterFactory.createByFormat(outputFormat);
-
-        PrinterType printerType = buildingBlocks.getPrinterType();
-        OutputPrinter printer = this.printerFactory.getOutputPrinter(printerType);
-
-        return new DataProcessor(formatter, printer);
     }
 }

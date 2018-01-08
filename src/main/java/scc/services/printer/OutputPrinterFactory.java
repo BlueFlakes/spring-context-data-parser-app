@@ -1,4 +1,4 @@
-package scc.services.converterServices.printer;
+package scc.services.printer;
 
 import scc.enums.PrinterType;
 import scc.exception.InvalidOutputPrinterException;

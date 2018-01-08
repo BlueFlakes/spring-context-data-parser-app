@@ -1,4 +1,4 @@
-package scc.controller.starters;
+package scc.services.starters;
 
 import scc.controller.SimpleConverter;
 import scc.dao.DataLoader;
@@ -6,8 +6,8 @@ import scc.dao.ReaderCreatorFactory;
 import scc.dao.DataLoaderType;
 import scc.dao.SettingsHandler;
 import scc.models.DataProcessorCreator;
-import scc.services.converterServices.formatter.OutputFormatterFactory;
-import scc.services.converterServices.printer.OutputPrinterFactory;
+import scc.services.formatter.OutputFormatterFactory;
+import scc.services.printer.OutputPrinterFactory;
 
 public class OneArgStarter implements ConverterStarter {
     private String[] args;

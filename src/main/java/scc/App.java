@@ -1,9 +1,9 @@
 package scc;
 
 
-import scc.controller.ConverterStarterFactory;
+import scc.services.starters.ConverterStarterFactory;
 import scc.exception.InvalidArgsAmountException;
-import scc.controller.ConverterStarter;
+import scc.services.starters.ConverterStarter;
 
 public class App {
     public static void main(String[] args) {

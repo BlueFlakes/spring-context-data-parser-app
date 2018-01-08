@@ -1,4 +1,4 @@
-package scc.services.converterServices.formatter;
+package scc.services.formatter;
 
 import scc.enums.OutputFormat;
 import scc.exception.InvalidOutputFormatterException;

@@ -1,4 +1,4 @@
-package scc.services.converterServices.printer;
+package scc.services.printer;
 
 public interface OutputPrinter {
     void print(String deliveredData);

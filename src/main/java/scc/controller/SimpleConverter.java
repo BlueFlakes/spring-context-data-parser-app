@@ -5,6 +5,7 @@ import scc.exception.DAOException;
 import scc.exception.InvalidOutputFormatterException;
 import scc.exception.InvalidOutputPrinterException;
 import scc.models.DataProcessorCreator;
+import scc.models.ProcessorBuildingBlocks;
 
 import java.util.List;
 
@@ -17,7 +18,7 @@ public class SimpleConverter {
         this.dataProcessorCreator = dataProcessorCreator;
     }
 
-    public void convert(DataProcessorCreator.ProcessorBuildingBlocks processorBuildingBlocks)
+    public void convert(ProcessorBuildingBlocks processorBuildingBlocks)
             throws DAOException, InvalidOutputFormatterException, InvalidOutputPrinterException {
 
         DataProcessorCreator.DataProcessor dataProcessor =
