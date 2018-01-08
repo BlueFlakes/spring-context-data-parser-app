@@ -1,10 +1,9 @@
 package scc.services.starters;
 
 import scc.dao.ReaderCreatorFactory;
-import scc.exception.InvalidArgsAmountException;
 
 public class ConverterStarterFactory {
-    public ConverterStarter getProperStarter(String[] args) throws InvalidArgsAmountException {
+    public ConverterStarter getProperStarter(String[] args) {
         int size = args.length;
 
         if (size == 0) {
