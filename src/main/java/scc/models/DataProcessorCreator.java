@@ -10,11 +10,11 @@ import scc.services.converterServices.formatter.OutputFormatterFactory;
 import scc.services.converterServices.printer.OutputPrinter;
 import scc.services.converterServices.printer.OutputPrinterFactory;
 
-public class ConverterCreator {
+public class DataProcessorCreator {
     private OutputFormatterFactory formatterFactory;
     private OutputPrinterFactory printerFactory;
 
-    public ConverterCreator(OutputFormatterFactory formatterFactory, OutputPrinterFactory printerFactory) {
+    public DataProcessorCreator(OutputFormatterFactory formatterFactory, OutputPrinterFactory printerFactory) {
         this.formatterFactory = formatterFactory;
         this.printerFactory = printerFactory;
     }
@@ -50,8 +50,8 @@ public class ConverterCreator {
         final OutputFormat defaultFormat = OutputFormat.TABLE;
         final PrinterType defaultPrinterType = PrinterType.PRINT_TO_CONSOLE;
 
-        ConverterCreator.ProcessorBuildingBlocks processorBuildingBlocks =
-                new ConverterCreator.ProcessorBuildingBlocks(defaultFormat, defaultPrinterType);
+        DataProcessorCreator.ProcessorBuildingBlocks processorBuildingBlocks =
+                new DataProcessorCreator.ProcessorBuildingBlocks(defaultFormat, defaultPrinterType);
 
         return createDataProcessor(processorBuildingBlocks);
     }

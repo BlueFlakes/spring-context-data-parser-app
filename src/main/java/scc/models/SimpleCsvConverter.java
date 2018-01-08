@@ -9,23 +9,22 @@ import java.util.Iterator;
 
 public class SimpleCsvConverter {
     private final CsvReader csvReader;
-    private final ConverterCreator converterCreator;
+    private final DataProcessorCreator dataProcessorCreator;
 
-    public SimpleCsvConverter(CsvReader csvReader, ConverterCreator converterCreator) {
+    public SimpleCsvConverter(CsvReader csvReader, DataProcessorCreator dataProcessorCreator) {
         this.csvReader = csvReader;
-        this.converterCreator = converterCreator;
+        this.dataProcessorCreator = dataProcessorCreator;
     }
 
-    public void convert(String pathToFile, ConverterCreator.ProcessorBuildingBlocks processorBuildingBlocks)
+    public void convert(String pathToFile, DataProcessorCreator.ProcessorBuildingBlocks processorBuildingBlocks)
             throws DAOException, InvalidOutputFormatterException, InvalidOutputPrinterException {
 
-        ConverterCreator.DataProcessor dataProcessor = this.converterCreator.createDataProcessor(processorBuildingBlocks);
+        DataProcessorCreator.DataProcessor dataProcessor = this.dataProcessorCreator.createDataProcessor(processorBuildingBlocks);
         Iterator<String[]> loadedData = this.csvReader.readData(pathToFile);
-
     }
 
     public void convert(String pathToFile) throws DAOException, InvalidOutputFormatterException, InvalidOutputPrinterException {
-        ConverterCreator.DataProcessor dataProcessor = this.converterCreator.createDefaultDataProcessor();
+        DataProcessorCreator.DataProcessor dataProcessor = this.dataProcessorCreator.createDefaultDataProcessor();
         Iterator<String[]> loadedData = this.csvReader.readData(pathToFile);
     }
 }
