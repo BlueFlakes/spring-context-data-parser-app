@@ -1,7 +1,6 @@
-package scc.controller;
+package scc.controller.starters;
 
 import scc.dao.ReaderCreatorFactory;
-import scc.enums.OutputFormat;
 
 public class ManyArgsStarter implements ConverterStarter {
     private String[] args;

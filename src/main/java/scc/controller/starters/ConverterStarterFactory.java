@@ -1,4 +1,4 @@
-package scc.controller;
+package scc.controller.starters;
 
 import scc.dao.ReaderCreatorFactory;
 import scc.exception.InvalidArgsAmountException;

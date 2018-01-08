@@ -1,5 +1,6 @@
-package scc.controller;
+package scc.controller.starters;
 
+import scc.controller.SimpleConverter;
 import scc.dao.DataLoader;
 import scc.dao.ReaderCreatorFactory;
 import scc.dao.DataLoaderType;

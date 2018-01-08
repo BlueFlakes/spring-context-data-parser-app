@@ -1,4 +1,4 @@
-package scc.controller;
+package scc.controller.starters;
 
 import scc.view.UserInterface;
 
