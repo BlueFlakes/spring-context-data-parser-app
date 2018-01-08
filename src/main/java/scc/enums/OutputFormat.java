@@ -1,8 +1,6 @@
-package scc.converterFunctionality;
+package scc.enums;
 
 import scc.utils.enums.EnumUtils;
-
-import java.util.Optional;
 
 public enum OutputFormat {
     JSON,
@@ -13,9 +11,5 @@ public enum OutputFormat {
 
     public static OutputFormat getByName(String name) {
         return enumUtils.getValue(OutputFormat.class, name);
-    }
-
-    public static boolean isAvailable(String name) {
-        return enumUtils.getValue(OutputFormat.class, name) != null;
     }
 }
