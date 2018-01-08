@@ -1,7 +1,8 @@
-package scc.converterFunctionality.controller;
+package scc.controller;
 
-import scc.converterFunctionality.OutputFormat;
-import scc.converterFunctionality.services.OutputFormatterFactory;
+import scc.enums.OutputFormat;
+import scc.exception.InvalidOutputFormatterException;
+import scc.services.converterServices.formatter.OutputFormatterConverterFactory;
 import scc.dao.FileReader;
 import scc.exception.DAOException;
 import scc.view.UserInterface;
@@ -17,19 +18,19 @@ public class ConverterStarter {
     }
 
     private enum ConverterAction {
-        FAILED,
-        SUCCESFULLY_LOADED
+        STOP,
+        START
     }
 
     public void runStarter() throws DAOException {
         ConverterAction action = getChosenAction();
 
         switch (action) {
-            case SUCCESFULLY_LOADED:
+            case START:
                 run();
                 break;
 
-            case FAILED:
+            case STOP:
                 handleNoAction();
                 break;
 
@@ -39,11 +40,19 @@ public class ConverterStarter {
     }
 
     private ConverterAction getChosenAction() {
-        return this.args.length == 0 || this.args.length > 2 ? ConverterAction.FAILED : ConverterAction.SUCCESFULLY_LOADED;
+        return this.args.length == 0 || this.args.length > 2 ? ConverterAction.STOP : ConverterAction.START;
     }
 
     private void run() throws DAOException {
-        SimpleCsvConverter simpleCsvConverter = new SimpleCsvConverter(new FileReader(), new OutputFormatterFactory());
+        try {
+            convertFileContent();
+        } catch (InvalidOutputFormatterException e) {
+            this.userInterface.println(e.getMessage());
+        }
+    }
+
+    private void convertFileContent() throws DAOException, InvalidOutputFormatterException {
+        SimpleCsvConverter simpleCsvConverter = new SimpleCsvConverter(new FileReader());
 
         if (this.args.length == 1) {
             String pathToFile = this.args[0];
@@ -51,19 +60,16 @@ public class ConverterStarter {
 
         } else if (this.args.length == 2) {
             handleParametrizedConversion(simpleCsvConverter);
+
         }
     }
 
-    private void handleParametrizedConversion(SimpleCsvConverter simpleCsvConverter) {
+    private void handleParametrizedConversion(SimpleCsvConverter simpleCsvConverter) throws InvalidOutputFormatterException {
         String givenFormatName = this.args[0];
         String pathToFile = this.args[1];
 
-        if (OutputFormat.isAvailable(givenFormatName)) {
-            OutputFormat expectedFormat = OutputFormat.getByName(givenFormatName);
-            simpleCsvConverter.convert(pathToFile, expectedFormat);
-        } else {
-            userInterface.println("Given format name is not available.");
-        }
+        OutputFormat expectedFormat = OutputFormat.getByName(givenFormatName);
+        simpleCsvConverter.convert(pathToFile, expectedFormat);
     }
 
     private void handleNoAction() {
