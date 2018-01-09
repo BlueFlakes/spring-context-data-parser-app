@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class ArgsInterpreter {
-    public String[] args;
+    private String[] args;
     private final int separationIndex = 2;
 
     public ArgsInterpreter(String[] args) {
@@ -34,15 +34,17 @@ public class ArgsInterpreter {
                         .collect(Collectors.toList());
     }
 
-    public <T extends Enum<T> & Flag> T getEnumByFlag(Class<T> deliveredEnumClass, String providedFlag) {
+    public <T extends Enum<T> & Flag> T getEnumByFlag(Class<T> deliveredEnumClass) {
         if (deliveredEnumClass.isEnum()) {
             T[] enumConstantsContainer = deliveredEnumClass.getEnumConstants();
 
-            for (T enumValue : enumConstantsContainer) {
-                String foundFlag = enumValue.getEnumFlag();
+            for (String providedFlag : getAdditionalSettings()) {
+                for (T enumValue : enumConstantsContainer) {
+                    String foundFlag = enumValue.getEnumFlag();
 
-                if (foundFlag.equals(providedFlag)) {
-                    return enumValue;
+                    if (foundFlag.equals(providedFlag)) {
+                        return enumValue;
+                    }
                 }
             }
         }
