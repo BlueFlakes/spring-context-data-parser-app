@@ -7,6 +7,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.function.Predicate;
 
 public class FileReader {
 
@@ -26,10 +27,14 @@ public class FileReader {
 
     private List<String> readFile(Scanner file) {
         List<String> tempDataContainer = new ArrayList<>();
+        Predicate<String> isBlankLine = String::isEmpty;
 
         while (file.hasNext()) {
             String line = file.nextLine();
-            tempDataContainer.add(line);
+
+            if (!isBlankLine.test(line)) {
+                tempDataContainer.add(line);
+            }
         }
 
         return tempDataContainer;
