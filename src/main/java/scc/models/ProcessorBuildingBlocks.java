@@ -1,10 +1,10 @@
 package scc.models;
 
-import lombok.Getter;
+
 import scc.enums.OutputFormat;
 import scc.enums.PrinterType;
 
-@Getter
+
 public class ProcessorBuildingBlocks {
     private final OutputFormat outputFormat;
     private final PrinterType printerType;
@@ -12,5 +12,13 @@ public class ProcessorBuildingBlocks {
     public ProcessorBuildingBlocks(OutputFormat outputFormat, PrinterType printerType) {
         this.outputFormat = outputFormat;
         this.printerType = printerType;
+    }
+
+    public OutputFormat getOutputFormat( ) {
+        return outputFormat;
+    }
+
+    public PrinterType getPrinterType( ) {
+        return printerType;
     }
 }
