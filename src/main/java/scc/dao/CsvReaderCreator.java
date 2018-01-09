@@ -1,6 +1,6 @@
 package scc.dao;
 
-public class CsvReaderCreator implements SettingsHandler {
+public class CsvReaderCreator implements ReaderSettingsHandler {
     private String[] args;
 
     public CsvReaderCreator(String[] args) {
@@ -8,7 +8,7 @@ public class CsvReaderCreator implements SettingsHandler {
     }
 
     @Override
-    public DataLoader getDataLoaderWithSettledProperties( ) {
+    public DataLoader getInstanceWithSettledProperties( ) {
         String defaultDelimiter = ",";
         FileReader fileReader = new FileReader();
         return new CsvReader(fileReader, getPath(), defaultDelimiter);
