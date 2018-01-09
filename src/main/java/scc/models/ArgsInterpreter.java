@@ -34,21 +34,7 @@ public class ArgsInterpreter {
                         .collect(Collectors.toList());
     }
 
-    public <T extends Enum<T> & Flag> T getEnumByFlag(Class<T> deliveredEnumClass) {
-        if (deliveredEnumClass.isEnum()) {
-            T[] enumConstantsContainer = deliveredEnumClass.getEnumConstants();
-
-            for (String providedFlag : getAdditionalSettings()) {
-                for (T enumValue : enumConstantsContainer) {
-                    String foundFlag = enumValue.getEnumFlag();
-
-                    if (foundFlag.equals(providedFlag)) {
-                        return enumValue;
-                    }
-                }
-            }
-        }
-
-        return null;
+    public <T extends Enum<T> & Flag> Searcher<T> getSearcher(Class<T> deliveredEnumClass) {
+        return new Searcher<>(deliveredEnumClass, getAdditionalSettings());
     }
 }
