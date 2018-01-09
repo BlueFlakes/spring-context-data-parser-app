@@ -1,4 +1,4 @@
-package scc.services.starters;
+package scc.services.starter;
 
 import scc.controller.SimpleConverter;
 import scc.dao.DataLoader;
