@@ -1,20 +1,19 @@
 package scc.dao;
 
-public class CsvReaderCreator implements ReaderSettingsHandler {
-    private String[] args;
+import scc.models.CsvArgsInterpreter;
 
-    public CsvReaderCreator(String[] args) {
-        this.args = args;
+public class CsvReaderCreator implements ReaderSettingsHandler {
+    private CsvArgsInterpreter csvArgsInterpreter;
+
+    public CsvReaderCreator(CsvArgsInterpreter csvArgsInterpreter) {
+        this.csvArgsInterpreter = csvArgsInterpreter;
     }
 
     @Override
     public DataLoader getInstanceWithSettledProperties( ) {
         String defaultDelimiter = ",";
         FileReader fileReader = new FileReader();
-        return new CsvReader(fileReader, getPath(), defaultDelimiter);
-    }
-
-    private String getPath() {
-        return this.args.length >= 2 ? this.args[1] : this.args[0];
+        String path = this.csvArgsInterpreter.getPath();
+        return new CsvReader(fileReader, path, defaultDelimiter);
     }
 }
