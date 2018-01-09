@@ -28,7 +28,13 @@ public class ArgsInterpreter {
         return retrieveSettingsFromBounds(lowerBound, upperBound);
     }
 
-    public <T extends Enum<T> & Flag> T get(Class<T> deliveredEnumClass, String providedFlag) {
+    private List<String> retrieveSettingsFromBounds(int lowerBound, int upperBound) {
+        return IntStream.range(lowerBound, upperBound)
+                        .mapToObj(idx -> this.args[idx])
+                        .collect(Collectors.toList());
+    }
+
+    public <T extends Enum<T> & Flag> T getEnumByFlag(Class<T> deliveredEnumClass, String providedFlag) {
         if (deliveredEnumClass.isEnum()) {
             T[] enumConstantsContainer = deliveredEnumClass.getEnumConstants();
 
@@ -42,11 +48,5 @@ public class ArgsInterpreter {
         }
 
         return null;
-    }
-
-    private List<String> retrieveSettingsFromBounds(int lowerBound, int upperBound) {
-        return IntStream.range(lowerBound, upperBound)
-                        .mapToObj(idx -> this.args[idx])
-                        .collect(Collectors.toList());
     }
 }
