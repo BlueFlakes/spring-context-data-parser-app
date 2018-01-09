@@ -1,20 +1,20 @@
 package scc.controller;
 
-import scc.dao.DataLoader;
 import scc.exception.DAOException;
 import scc.exception.InvalidOutputFormatterException;
 import scc.exception.InvalidOutputPrinterException;
 import scc.models.DataProcessorCreator;
 import scc.models.ProcessorBuildingBlocks;
+import scc.services.document.Document;
 
 import java.util.List;
 
 public class SimpleConverter {
-    private final DataLoader dataLoader;
+    private final Document document;
     private final DataProcessorCreator dataProcessorCreator;
 
-    public SimpleConverter(DataLoader dataLoader, DataProcessorCreator dataProcessorCreator) {
-        this.dataLoader = dataLoader;
+    public SimpleConverter(Document document, DataProcessorCreator dataProcessorCreator) {
+        this.document = document;
         this.dataProcessorCreator = dataProcessorCreator;
     }
 
@@ -34,7 +34,6 @@ public class SimpleConverter {
     }
 
     private void handleConversion(DataProcessorCreator.DataProcessor dataProcessor) throws DAOException {
-        List<String[]> loadedData = this.dataLoader.getResourceContent();
-        dataProcessor.process(loadedData);
+        dataProcessor.process(this.document);
     }
 }

@@ -4,6 +4,7 @@ import scc.enums.OutputFormat;
 import scc.enums.PrinterType;
 import scc.exception.InvalidOutputFormatterException;
 import scc.exception.InvalidOutputPrinterException;
+import scc.services.document.Document;
 import scc.services.formatter.OutputFormatter;
 import scc.services.formatter.OutputFormatterFactory;
 import scc.services.printer.OutputPrinter;
@@ -52,8 +53,8 @@ public class DataProcessorCreator {
             this.printer = printer;
         }
 
-        public void process(List<String[]> loadedData) {
-            String formattedData = this.formatter.getFormattedData(loadedData);
+        public void process(Document document) {
+            String formattedData = this.formatter.getFormattedData(document);
             this.printer.print(formattedData);
         }
     }

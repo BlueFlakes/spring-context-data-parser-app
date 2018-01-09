@@ -1,7 +1,7 @@
 package scc.services.formatter;
 
-import java.util.List;
+import scc.services.document.Document;
 
 public interface OutputFormatter {
-    String getFormattedData(List<String[]> data);
+    String getFormattedData(Document document);
 }
