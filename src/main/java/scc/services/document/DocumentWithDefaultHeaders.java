@@ -16,9 +16,19 @@ public class DocumentWithDefaultHeaders implements DocumentCreator {
     @Override
     public Document createDocument( ) throws DAOException {
         List<String[]> loadedData = dataLoader.getResourceContent();
-        int columnsAmountPerRow = loadedData.get(0).length;
+        int columnsAmountPerRow = getExpectedAmountOfHeaders(loadedData);
 
         return new Document(loadedData, generateHeaders(columnsAmountPerRow));
+    }
+
+    private int getExpectedAmountOfHeaders(List<String[]> loadedData) {
+        if (loadedData.size() > 0) {
+            String[] firstRow = loadedData.get(0);
+
+            return firstRow.length;
+        }
+
+        return 0;
     }
 
     private String[] generateHeaders(int columnsAmount) {
