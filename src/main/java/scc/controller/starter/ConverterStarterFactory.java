@@ -1,6 +1,5 @@
 package scc.controller.starter;
 
-import scc.dao.ReaderCreatorFactory;
 import scc.models.ArgsInterpreter;
 
 public class ConverterStarterFactory {
