@@ -10,7 +10,7 @@ public class ConverterStarterFactory {
         if (size == 0) {
             return new ZeroArgStarter();
         } else if (size == 1) {
-            return new OneArgStarter(new ArgsInterpreter(args), new ReaderCreatorFactory());
+            return new OneArgStarter(new ArgsInterpreter(args));
         } else {
             return new ManyArgsStarter(args, new ReaderCreatorFactory());
         }

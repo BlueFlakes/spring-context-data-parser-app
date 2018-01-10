@@ -5,11 +5,11 @@ import scc.enums.OutputFormat;
 import scc.enums.PrinterType;
 
 
-public class ProcessorBuildingBlocks {
+public class DataProcessorBuildingBlocks {
     private final OutputFormat outputFormat;
     private final PrinterType printerType;
 
-    public ProcessorBuildingBlocks(OutputFormat outputFormat, PrinterType printerType) {
+    public DataProcessorBuildingBlocks(OutputFormat outputFormat, PrinterType printerType) {
         this.outputFormat = outputFormat;
         this.printerType = printerType;
     }

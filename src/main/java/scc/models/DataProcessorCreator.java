@@ -10,8 +10,6 @@ import scc.services.formatter.OutputFormatterFactory;
 import scc.services.printer.OutputPrinter;
 import scc.services.printer.OutputPrinterFactory;
 
-import java.util.List;
-
 public class DataProcessorCreator {
     private OutputFormatterFactory formatterFactory;
     private OutputPrinterFactory printerFactory;
@@ -27,13 +25,13 @@ public class DataProcessorCreator {
         final OutputFormat defaultFormat = OutputFormat.TABLE;
         final PrinterType defaultPrinterType = PrinterType.PRINT_TO_CONSOLE;
 
-        ProcessorBuildingBlocks processorBuildingBlocks =
-                new ProcessorBuildingBlocks(defaultFormat, defaultPrinterType);
+        DataProcessorBuildingBlocks dataProcessorBuildingBlocks =
+                new DataProcessorBuildingBlocks(defaultFormat, defaultPrinterType);
 
-        return createDataProcessor(processorBuildingBlocks);
+        return createDataProcessor(dataProcessorBuildingBlocks);
     }
 
-    public DataProcessor createDataProcessor(ProcessorBuildingBlocks buildingBlocks)
+    public DataProcessor createDataProcessor(DataProcessorBuildingBlocks buildingBlocks)
             throws InvalidOutputPrinterException, InvalidOutputFormatterException {
         OutputFormat outputFormat = buildingBlocks.getOutputFormat();
         OutputFormatter formatter = this.formatterFactory.createByFormat(outputFormat);
