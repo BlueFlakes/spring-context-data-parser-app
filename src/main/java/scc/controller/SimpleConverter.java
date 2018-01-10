@@ -17,7 +17,7 @@ public class SimpleConverter {
     }
 
     public void convert(ArgsInterpreter argsInterpreter, DataProcessorBuildingBlocks processorBuildingBlocks)
-            throws DAOException, CustomInvalidArgumentException, DataFormatException {
+            throws DAOException, ImproperArgumentException, DataFormatException {
 
         DataProcessorCreator.DataProcessor dataProcessor =
                 this.dataProcessorCreator.createDataProcessor(processorBuildingBlocks);
@@ -25,7 +25,7 @@ public class SimpleConverter {
     }
 
     public void convert(ArgsInterpreter argsInterpreter)
-            throws DAOException, CustomInvalidArgumentException, DataFormatException {
+            throws DAOException, ImproperArgumentException, DataFormatException {
 
         DataProcessorCreator.DataProcessor dataProcessor = this.dataProcessorCreator.createDefaultDataProcessor();
         handleConversion(argsInterpreter, dataProcessor);

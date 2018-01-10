@@ -1,6 +1,6 @@
 package scc.models;
 
-import scc.exception.CustomInvalidArgumentException;
+import scc.exception.ImproperArgumentException;
 import scc.exception.DataFormatException;
 import scc.services.document.Document;
 import scc.services.formatter.OutputFormat;
@@ -20,7 +20,7 @@ public class DataProcessorCreator {
     }
 
     public DataProcessor createDefaultDataProcessor()
-            throws CustomInvalidArgumentException {
+            throws ImproperArgumentException {
 
         final OutputFormat defaultFormat = OutputFormat.TABLE;
         final PrinterType defaultPrinterType = PrinterType.PRINT_TO_CONSOLE;
@@ -32,7 +32,7 @@ public class DataProcessorCreator {
     }
 
     public DataProcessor createDataProcessor(DataProcessorBuildingBlocks buildingBlocks)
-            throws CustomInvalidArgumentException {
+            throws ImproperArgumentException {
         OutputFormat outputFormat = buildingBlocks.getOutputFormat();
         OutputFormatter formatter = this.formatterFactory.createByFormat(outputFormat);
 

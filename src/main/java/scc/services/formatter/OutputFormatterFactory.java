@@ -1,9 +1,9 @@
 package scc.services.formatter;
 
-import scc.exception.CustomInvalidArgumentException;
+import scc.exception.ImproperArgumentException;
 
 public class OutputFormatterFactory {
-    public OutputFormatter createByFormat(OutputFormat outputFormat) throws CustomInvalidArgumentException {
+    public OutputFormatter createByFormat(OutputFormat outputFormat) throws ImproperArgumentException {
         switch (outputFormat) {
             case XML:
                 return new XmlOutputFormatter();
@@ -15,7 +15,7 @@ public class OutputFormatterFactory {
                 return new TableOutputFormatter();
 
             default:
-                throw new CustomInvalidArgumentException("Asked for non existing OutputFormatter");
+                throw new ImproperArgumentException("Asked for non existing OutputFormatter");
         }
     }
 }
