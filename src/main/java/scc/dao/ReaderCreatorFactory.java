@@ -1,6 +1,5 @@
 package scc.dao;
 
-import scc.enums.DataLoaderType;
 import scc.interfaces.ReaderSettingsHandler;
 import scc.models.ArgsInterpreter;
 import scc.models.CsvArgsInterpreter;

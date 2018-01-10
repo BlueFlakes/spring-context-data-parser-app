@@ -1,7 +1,7 @@
 package scc.models;
 
-import scc.enums.OutputFormat;
-import scc.enums.PrinterType;
+import scc.services.formatter.OutputFormat;
+import scc.services.printer.PrinterType;
 import scc.exception.DataFormatException;
 import scc.exception.InvalidOutputFormatterException;
 import scc.exception.InvalidOutputPrinterException;

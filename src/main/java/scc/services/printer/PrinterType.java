@@ -1,4 +1,4 @@
-package scc.enums;
+package scc.services.printer;
 
 import scc.utils.enums.EnumUtils;
 

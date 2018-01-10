@@ -2,8 +2,8 @@ package scc.controller.starter;
 
 import scc.controller.SimpleConverter;
 import scc.dao.ReaderCreatorFactory;
-import scc.enums.OutputFormat;
-import scc.enums.PrinterType;
+import scc.services.formatter.OutputFormat;
+import scc.services.printer.PrinterType;
 import scc.models.ArgsInterpreter;
 import scc.models.CsvArgsInterpreter;
 import scc.models.DataProcessorBuildingBlocks;

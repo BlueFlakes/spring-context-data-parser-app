@@ -1,6 +1,6 @@
 package scc.models;
 
-import scc.enums.OutputFormat;
+import scc.services.formatter.OutputFormat;
 import scc.exception.InvalidOutputFormatterException;
 
 import java.util.List;

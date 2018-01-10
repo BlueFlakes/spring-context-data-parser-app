@@ -1,6 +1,5 @@
 package scc.services.printer;
 
-import scc.enums.PrinterType;
 import scc.exception.InvalidOutputPrinterException;
 
 public class OutputPrinterFactory {

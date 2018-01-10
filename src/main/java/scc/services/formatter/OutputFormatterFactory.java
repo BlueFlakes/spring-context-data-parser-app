@@ -1,6 +1,5 @@
 package scc.services.formatter;
 
-import scc.enums.OutputFormat;
 import scc.exception.InvalidOutputFormatterException;
 
 public class OutputFormatterFactory {

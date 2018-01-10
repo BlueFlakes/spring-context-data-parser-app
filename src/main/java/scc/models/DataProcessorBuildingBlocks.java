@@ -1,8 +1,8 @@
 package scc.models;
 
 
-import scc.enums.OutputFormat;
-import scc.enums.PrinterType;
+import scc.services.formatter.OutputFormat;
+import scc.services.printer.PrinterType;
 
 
 public class DataProcessorBuildingBlocks {
