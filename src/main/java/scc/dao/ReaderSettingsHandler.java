@@ -1,4 +1,4 @@
-package scc.interfaces;
+package scc.dao;
 
 import scc.dao.DataLoader;
 

@@ -4,7 +4,7 @@ import scc.dao.DataLoader;
 import scc.dao.ReaderCreatorFactory;
 import scc.dao.DataLoaderType;
 import scc.exception.DAOException;
-import scc.interfaces.ReaderSettingsHandler;
+import scc.dao.ReaderSettingsHandler;
 import scc.models.ArgsInterpreter;
 import scc.services.document.Document;
 import scc.services.document.DocumentCreator;
