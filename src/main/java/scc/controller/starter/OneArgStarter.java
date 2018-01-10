@@ -22,13 +22,13 @@ public class OneArgStarter implements ConverterStarter {
 
         DocumentCreatorFactory documentCreatorFactory = new DocumentCreatorFactory();
         ReaderCreatorFactory readerCreatorFactory = new ReaderCreatorFactory();
-        DaoInputHandler inputHandler = new OneInputHandler(readerCreatorFactory, documentCreatorFactory);
+        DaoInputHandler daoInputHandler = new OneInputHandler(readerCreatorFactory, documentCreatorFactory);
 
         OutputFormatterFactory formatterFactory = new OutputFormatterFactory();
         OutputPrinterFactory printerFactory = new OutputPrinterFactory();
         DataProcessorCreator dataProcessorCreator = new DataProcessorCreator(formatterFactory, printerFactory);
 
-        SimpleConverter simpleConverter = new SimpleConverter(inputHandler, dataProcessorCreator);
+        SimpleConverter simpleConverter = new SimpleConverter(daoInputHandler, dataProcessorCreator);
         simpleConverter.convert(argsInterpreter);
     }
 }
