@@ -12,7 +12,7 @@ public class ConverterStarterFactory {
         } else if (size == 1) {
             return new OneArgStarter(new ArgsInterpreter(args));
         } else {
-            return new ManyArgsStarter(args, new ReaderCreatorFactory());
+            return new ManyArgsStarter(new ArgsInterpreter(args));
         }
     }
 }

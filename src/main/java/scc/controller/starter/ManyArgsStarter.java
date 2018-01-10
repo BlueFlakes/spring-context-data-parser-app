@@ -1,14 +1,12 @@
 package scc.controller.starter;
 
-import scc.dao.ReaderCreatorFactory;
+import scc.models.ArgsInterpreter;
 
 public class ManyArgsStarter implements ConverterStarter {
-    private String[] args;
-    private ReaderCreatorFactory readerCreatorFactory;
+    private ArgsInterpreter argsInterpreter;
 
-    public ManyArgsStarter(String[] args, ReaderCreatorFactory readerCreatorFactory) {
-        this.args = args;
-        this.readerCreatorFactory = readerCreatorFactory;
+    public ManyArgsStarter(ArgsInterpreter argsInterpreter) {
+        this.argsInterpreter = argsInterpreter;
     }
 
     @Override
