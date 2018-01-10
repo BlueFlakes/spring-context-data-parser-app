@@ -1,16 +1,18 @@
 package scc.services.formatter;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import scc.services.document.Document;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 public class JsonOutputFormatter implements OutputFormatter {
     private static final ObjectMapper objectMapper = new ObjectMapper();
 
     @Override
-    public String getFormattedData(Document document) {
+    public String getFormattedData(Document document) throws Exception {
 
         String[] headers = document.getHeaders();
         int headersAmount = headers.length;
@@ -31,13 +33,6 @@ public class JsonOutputFormatter implements OutputFormatter {
             mappedRecords.add(map);
         }
 
-        String json = "[]";
-        try {
-            json = objectMapper.writeValueAsString(mappedRecords);
-        } catch (JsonProcessingException e) {
-            // TODO # LOGGER WRITE
-        }
-
-        return json;
+        return objectMapper.writeValueAsString(mappedRecords);
     }
 }

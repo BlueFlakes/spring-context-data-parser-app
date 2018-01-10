@@ -1,6 +1,7 @@
 package scc.controller;
 
 import scc.exception.DAOException;
+import scc.exception.DataFormatException;
 import scc.exception.InvalidOutputFormatterException;
 import scc.exception.InvalidOutputPrinterException;
 import scc.services.daoInputHandlers.DaoInputHandler;
@@ -19,7 +20,7 @@ public class SimpleConverter {
     }
 
     public void convert(ArgsInterpreter argsInterpreter, DataProcessorBuildingBlocks processorBuildingBlocks)
-            throws DAOException, InvalidOutputFormatterException, InvalidOutputPrinterException {
+            throws DAOException, InvalidOutputFormatterException, InvalidOutputPrinterException, DataFormatException {
 
         DataProcessorCreator.DataProcessor dataProcessor =
                 this.dataProcessorCreator.createDataProcessor(processorBuildingBlocks);
@@ -27,13 +28,15 @@ public class SimpleConverter {
     }
 
     public void convert(ArgsInterpreter argsInterpreter)
-            throws DAOException, InvalidOutputFormatterException, InvalidOutputPrinterException {
+            throws DAOException, InvalidOutputFormatterException, InvalidOutputPrinterException, DataFormatException {
 
         DataProcessorCreator.DataProcessor dataProcessor = this.dataProcessorCreator.createDefaultDataProcessor();
         handleConversion(argsInterpreter, dataProcessor);
     }
 
-    private void handleConversion(ArgsInterpreter argsInterpreter, DataProcessorCreator.DataProcessor dataProcessor) throws DAOException {
+    private void handleConversion(ArgsInterpreter argsInterpreter, DataProcessorCreator.DataProcessor dataProcessor)
+            throws DAOException, DataFormatException {
+
         Document document = this.daoInputHandler.prepareData(argsInterpreter);
         dataProcessor.process(document);
     }

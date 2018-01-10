@@ -10,8 +10,7 @@ public class XmlOutputFormatter implements OutputFormatter {
     private static final int indentLength = 4;
 
     @Override
-    public String getFormattedData(Document document) {
-
+    public String getFormattedData(Document document) throws Exception {
         StringBuilder stringBuilder = new StringBuilder();
         String[] headers = document.getHeaders();
         int headersAmount = headers.length;

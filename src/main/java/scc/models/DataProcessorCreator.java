@@ -2,6 +2,7 @@ package scc.models;
 
 import scc.enums.OutputFormat;
 import scc.enums.PrinterType;
+import scc.exception.DataFormatException;
 import scc.exception.InvalidOutputFormatterException;
 import scc.exception.InvalidOutputPrinterException;
 import scc.services.document.Document;
@@ -51,8 +52,15 @@ public class DataProcessorCreator {
             this.printer = printer;
         }
 
-        public void process(Document document) {
-            String formattedData = this.formatter.getFormattedData(document);
+        public void process(Document document) throws DataFormatException {
+            String formattedData;
+
+            try {
+                formattedData = this.formatter.getFormattedData(document);
+            } catch (Exception e) {
+                throw new DataFormatException("Broken data format delivered. Expected valid Csv Format");
+            }
+
             this.printer.print(formattedData);
         }
     }
