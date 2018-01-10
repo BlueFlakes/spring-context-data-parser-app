@@ -19,10 +19,10 @@ public class XmlOutputFormatter implements OutputFormatter {
         String indentation = getIndent();
 
         setXmlVersion(stringBuilder);
-        openMultilineSpace(stringBuilder, scopeName);
+        openSpaceWithNextLine(stringBuilder, scopeName);
 
         for (String[] row : documentContent) {
-            openMultilineSpace(stringBuilder, elementName);
+            openSpaceWithNextLine(stringBuilder, elementName);
             int columnsCount = row.length;
             int propertiesAmount = headersAmount > columnsCount ? columnsCount : headersAmount;
 
@@ -34,10 +34,10 @@ public class XmlOutputFormatter implements OutputFormatter {
 
                 openSpace(stringBuilder, header);
                 stringBuilder.append(value);
-                closeSpace(stringBuilder, header).append("\n");
+                closeSpaceWithNextLine(stringBuilder, header);
             }
 
-            closeMultilineSpace(stringBuilder, elementName);
+            closeSpaceWithNextLine(stringBuilder, elementName);
         }
         closeSpace(stringBuilder, scopeName);
 
@@ -45,15 +45,16 @@ public class XmlOutputFormatter implements OutputFormatter {
     }
 
     private void setXmlVersion(StringBuilder stringBuilder) {
-        stringBuilder.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>").append("\n");
+        String sentence = "?xml version=\"1.0\" encoding=\"UTF-8\"?";
+        openSpaceWithNextLine(stringBuilder, sentence);
     }
 
-    private StringBuilder openMultilineSpace(StringBuilder stringBuilder, String sentence) {
-        return openSpace(stringBuilder, sentence).append("\n");
+    private void openSpaceWithNextLine(StringBuilder stringBuilder, String sentence) {
+        openSpace(stringBuilder, sentence).append("\n");
     }
 
-    private StringBuilder closeMultilineSpace(StringBuilder stringBuilder, String sentence) {
-        return closeSpace(stringBuilder, sentence).append("\n");
+    private void closeSpaceWithNextLine(StringBuilder stringBuilder, String sentence) {
+        closeSpace(stringBuilder, sentence).append("\n");
     }
 
     private StringBuilder openSpace(StringBuilder stringBuilder, String sentence) {
