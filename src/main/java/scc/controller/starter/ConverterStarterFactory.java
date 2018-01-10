@@ -1,4 +1,4 @@
-package scc.services.starter;
+package scc.controller.starter;
 
 import scc.dao.ReaderCreatorFactory;
 import scc.models.ArgsInterpreter;

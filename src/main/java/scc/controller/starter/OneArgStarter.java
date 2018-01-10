@@ -1,15 +1,12 @@
-package scc.services.starter;
+package scc.controller.starter;
 
 import scc.controller.SimpleConverter;
 import scc.dao.DataLoader;
 import scc.dao.ReaderCreatorFactory;
 import scc.enums.DataLoaderType;
 import scc.dao.ReaderSettingsHandler;
-import scc.enums.OutputFormat;
-import scc.enums.PrinterType;
 import scc.models.ArgsInterpreter;
 import scc.models.DataProcessorCreator;
-import scc.models.ProcessorBuildingBlocks;
 import scc.services.document.Document;
 import scc.services.document.DocumentCreator;
 import scc.services.document.DocumentCreatorFactory;
