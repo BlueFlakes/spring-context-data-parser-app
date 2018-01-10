@@ -5,6 +5,7 @@ import scc.dao.ReaderCreatorFactory;
 import scc.dao.DataLoaderType;
 import scc.exception.DAOException;
 import scc.dao.ReaderSettingsHandler;
+import scc.exception.ImproperArgumentException;
 import scc.models.ArgsInterpreter;
 import scc.services.document.Document;
 import scc.services.document.DocumentCreator;
@@ -23,7 +24,7 @@ public class DefaultPipelineSourceReader implements DaoInputHandler {
     }
 
     @Override
-    public Document prepareData(ArgsInterpreter argsInterpreter) throws DAOException {
+    public Document prepareData(ArgsInterpreter argsInterpreter) throws DAOException, ImproperArgumentException {
         ReaderSettingsHandler readerSettingsHandler =
                 readerCreatorFactory.getReaderCreatorByDataSource(this.dataLoaderType, argsInterpreter);
 

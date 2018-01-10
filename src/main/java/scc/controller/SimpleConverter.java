@@ -32,7 +32,7 @@ public class SimpleConverter {
     }
 
     private void handleConversion(ArgsInterpreter argsInterpreter, DataProcessorCreator.DataProcessor dataProcessor)
-            throws DAOException, DataFormatException {
+            throws DAOException, DataFormatException, ImproperArgumentException {
 
         Document document = this.daoInputHandler.prepareData(argsInterpreter);
         dataProcessor.process(document);
