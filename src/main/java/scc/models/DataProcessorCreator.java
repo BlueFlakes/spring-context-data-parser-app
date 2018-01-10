@@ -1,15 +1,14 @@
 package scc.models;
 
-import scc.services.formatter.OutputFormat;
-import scc.services.printer.PrinterType;
+import scc.exception.CustomInvalidArgumentException;
 import scc.exception.DataFormatException;
-import scc.exception.InvalidOutputFormatterException;
-import scc.exception.InvalidOutputPrinterException;
 import scc.services.document.Document;
+import scc.services.formatter.OutputFormat;
 import scc.services.formatter.OutputFormatter;
 import scc.services.formatter.OutputFormatterFactory;
 import scc.services.printer.OutputPrinter;
 import scc.services.printer.OutputPrinterFactory;
+import scc.services.printer.PrinterType;
 
 public class DataProcessorCreator {
     private OutputFormatterFactory formatterFactory;
@@ -21,7 +20,7 @@ public class DataProcessorCreator {
     }
 
     public DataProcessor createDefaultDataProcessor()
-            throws InvalidOutputPrinterException, InvalidOutputFormatterException {
+            throws CustomInvalidArgumentException {
 
         final OutputFormat defaultFormat = OutputFormat.TABLE;
         final PrinterType defaultPrinterType = PrinterType.PRINT_TO_CONSOLE;
@@ -33,7 +32,7 @@ public class DataProcessorCreator {
     }
 
     public DataProcessor createDataProcessor(DataProcessorBuildingBlocks buildingBlocks)
-            throws InvalidOutputPrinterException, InvalidOutputFormatterException {
+            throws CustomInvalidArgumentException {
         OutputFormat outputFormat = buildingBlocks.getOutputFormat();
         OutputFormatter formatter = this.formatterFactory.createByFormat(outputFormat);
 

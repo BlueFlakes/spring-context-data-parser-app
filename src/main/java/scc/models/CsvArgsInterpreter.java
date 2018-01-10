@@ -1,7 +1,7 @@
 package scc.models;
 
+import scc.exception.CustomInvalidArgumentException;
 import scc.services.formatter.OutputFormat;
-import scc.exception.InvalidOutputFormatterException;
 
 import java.util.List;
 
@@ -26,7 +26,7 @@ public class CsvArgsInterpreter {
         return settingsAmount == 2 ? basicSettings.get(0) : null;
     }
 
-    public OutputFormat getOutputFormat() throws InvalidOutputFormatterException {
+    public OutputFormat getOutputFormat() throws CustomInvalidArgumentException {
         String expectedOutputFormat = getExpectedOutputFormatName();
 
         if (expectedOutputFormat != null) {
@@ -36,7 +36,7 @@ public class CsvArgsInterpreter {
             if (outputFormat != null)
                 return outputFormat;
 
-            throw new InvalidOutputFormatterException("Incorrect name delivered.");
+            throw new CustomInvalidArgumentException("Incorrect output formatter identity delivered.");
         }
 
         return OutputFormat.TABLE;

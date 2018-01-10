@@ -1,16 +1,16 @@
 package scc.services.printer;
 
-import scc.exception.InvalidOutputPrinterException;
+import scc.exception.CustomInvalidArgumentException;
 
 public class OutputPrinterFactory {
 
-    public OutputPrinter getOutputPrinter(PrinterType printerType) throws InvalidOutputPrinterException {
+    public OutputPrinter getOutputPrinter(PrinterType printerType) throws CustomInvalidArgumentException {
         switch (printerType) {
             case PRINT_TO_CONSOLE:
                 return new ConsolePrinter();
 
             default:
-                throw new InvalidOutputPrinterException("Expected OutputPrinter does not exist.");
+                throw new CustomInvalidArgumentException("Expected OutputPrinter does not exist.");
         }
     }
 }
