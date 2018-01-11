@@ -1,5 +1,6 @@
 package scc.models;
 
+import scc.exception.InvalidArgumentCombinationException;
 import scc.interfaces.Flag;
 
 import java.util.List;
@@ -47,15 +48,26 @@ public class ArgsInterpreter {
             this.deliveredEnumClass = deliveredEnumClass;
         }
 
+        public String findFlagWhichStartsWith(String prefix) throws InvalidArgumentCombinationException {
+            for (String providedFlag : this.additionalSettings) {
+                if (providedFlag.startsWith(prefix)) {
+                    return providedFlag;
+                }
+            }
+
+            String errorMessage = "Given prefix: " + prefix + " | didn't use pre command";
+            throw new InvalidArgumentCombinationException(errorMessage);
+        }
+
         public T findEnumByFlag() {
             if (this.deliveredEnumClass.isEnum()) {
                 T[] enumConstantsContainer = this.deliveredEnumClass.getEnumConstants();
 
                 for (String providedFlag : this.additionalSettings) {
                     for (T enumValue : enumConstantsContainer) {
-                        String foundFlag = enumValue.getEnumFlag();
+                        String enumFlag = enumValue.getEnumFlag();
 
-                        if (foundFlag.equals(providedFlag)) {
+                        if (enumFlag != null && enumFlag.equals(providedFlag)) {
                             return enumValue;
                         }
                     }
