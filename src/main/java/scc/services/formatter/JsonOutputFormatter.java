@@ -3,6 +3,8 @@ package scc.services.formatter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import scc.services.document.Document;
 
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -22,8 +24,9 @@ public class JsonOutputFormatter implements OutputFormatter {
 
         for (String[] row : table) {
             Map<String, String> map = new LinkedHashMap<>();
+            int valuesInRowCount = headersAmount > row.length ? row.length : headersAmount;
 
-            for (int i = 0; i < headersAmount; i++) {
+            for (int i = 0; i < valuesInRowCount; i++) {
                 String header = headers[i];
                 String body = row[i];
 
