@@ -18,10 +18,10 @@ public class XmlOutputFormatter implements OutputFormatter {
         String indentation = getIndent();
 
         setXmlVersion(stringBuilder);
-        openSpaceWithNextLine(stringBuilder, scopeName);
+        openSpace(stringBuilder, scopeName);
 
         for (String[] row : documentContent) {
-            openSpaceWithNextLine(stringBuilder, elementName);
+            openSpace(stringBuilder, elementName);
             int columnsCount = row.length;
             int propertiesAmount = headersAmount > columnsCount ? columnsCount : headersAmount;
 
@@ -33,10 +33,10 @@ public class XmlOutputFormatter implements OutputFormatter {
 
                 openSpace(stringBuilder, header);
                 stringBuilder.append(value);
-                closeSpaceWithNextLine(stringBuilder, header);
+                closeSpace(stringBuilder, header);
             }
 
-            closeSpaceWithNextLine(stringBuilder, elementName);
+            closeSpace(stringBuilder, elementName);
         }
         closeSpace(stringBuilder, scopeName);
 
@@ -45,23 +45,15 @@ public class XmlOutputFormatter implements OutputFormatter {
 
     private void setXmlVersion(StringBuilder stringBuilder) {
         String sentence = "?xml version=\"1.0\" encoding=\"UTF-8\"?";
-        openSpaceWithNextLine(stringBuilder, sentence);
+        openSpace(stringBuilder, sentence);
     }
 
-    private void openSpaceWithNextLine(StringBuilder stringBuilder, String sentence) {
-        openSpace(stringBuilder, sentence).append("\n");
+    private void openSpace(StringBuilder stringBuilder, String sentence) {
+        stringBuilder.append("<").append(sentence).append(">");
     }
 
-    private void closeSpaceWithNextLine(StringBuilder stringBuilder, String sentence) {
-        closeSpace(stringBuilder, sentence).append("\n");
-    }
-
-    private StringBuilder openSpace(StringBuilder stringBuilder, String sentence) {
-        return stringBuilder.append("<").append(sentence).append(">");
-    }
-
-    private StringBuilder closeSpace(StringBuilder stringBuilder, String sentence) {
-        return stringBuilder.append("</").append(sentence).append(">");
+    private void closeSpace(StringBuilder stringBuilder, String sentence) {
+        stringBuilder.append("</").append(sentence).append(">");
     }
 
     private String getIndent( ) {
