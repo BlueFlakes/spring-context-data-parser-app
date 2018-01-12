@@ -1,5 +1,7 @@
 package scc.models;
 
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.stereotype.Component;
 import scc.exception.InvalidArgumentCombinationException;
 import scc.interfaces.Flag;
 
@@ -8,11 +10,17 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class OrdersProvider {
-    private String[] args;
+    private final ClassPathXmlApplicationContext ctx =
+            new ClassPathXmlApplicationContext("applicationContext.xml");
     private final int separationIndex = 2;
+    private String[] args;
 
     public OrdersProvider(String[] args) {
         this.args = args;
+    }
+
+    public ClassPathXmlApplicationContext getAppContext() {
+        return ctx;
     }
 
     public List<String> getBasicSettings() {
