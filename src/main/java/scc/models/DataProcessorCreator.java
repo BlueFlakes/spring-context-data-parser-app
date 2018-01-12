@@ -1,5 +1,6 @@
 package scc.models;
 
+import org.springframework.stereotype.Component;
 import scc.exception.ImproperArgumentException;
 import scc.exception.DataFormatException;
 import scc.exception.ImproperStateException;
@@ -9,6 +10,7 @@ import scc.services.formatter.OutputFormatterFactory;
 import scc.services.printer.OutputPrinter;
 import scc.services.printer.OutputPrinterFactory;
 
+@Component
 public class DataProcessorCreator {
     private OutputFormatterFactory formatterFactory;
     private OutputPrinterFactory printerFactory;

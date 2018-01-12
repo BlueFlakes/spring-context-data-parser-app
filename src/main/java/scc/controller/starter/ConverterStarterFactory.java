@@ -5,12 +5,14 @@ import scc.view.UserInterface;
 
 public class ConverterStarterFactory {
     public ConverterStarter getProperStarter(String[] args) {
+        OrdersProvider ordersProvider = new OrdersProvider(args);
         int size = args.length;
 
         if (size == 0) {
-            return new ZeroArgStarter(new UserInterface());
+            return ordersProvider.getAppContext()
+                                 .getBean(ZeroArgStarter.class);
         } else  {
-            return new MultipleArgsStarter(new OrdersProvider(args));
+            return new MultipleArgsStarter(ordersProvider);
         }
     }
 }

@@ -1,7 +1,9 @@
 package scc.controller.starter;
 
+import org.springframework.stereotype.Component;
 import scc.view.UserInterface;
 
+@Component()
 public class ZeroArgStarter implements ConverterStarter {
     private UserInterface userInterface;
 

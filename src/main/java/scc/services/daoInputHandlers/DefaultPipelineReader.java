@@ -1,5 +1,6 @@
 package scc.services.daoInputHandlers;
 
+import org.springframework.stereotype.Component;
 import scc.dao.DataLoader;
 import scc.dao.ReaderCreatorFactory;
 import scc.dao.DataLoaderType;
@@ -11,6 +12,7 @@ import scc.services.document.Document;
 import scc.services.document.DocumentCreator;
 import scc.services.document.DocumentCreatorFactory;
 
+@Component
 public class DefaultPipelineReader implements DaoHandler {
     private final DataLoaderType dataLoaderType = DataLoaderType.CSV_READER;
     private ReaderCreatorFactory readerCreatorFactory;

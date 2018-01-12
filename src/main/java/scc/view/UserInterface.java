@@ -1,7 +1,9 @@
 package scc.view;
 
-public class UserInterface {
+import org.springframework.stereotype.Component;
 
+@Component
+public class UserInterface {
     public void println(String message) {
         System.out.println(message);
     }
