@@ -2,13 +2,13 @@ package scc.services.formatter;
 
 import scc.exception.ImproperArgumentException;
 import scc.models.OrdersProvider;
-import scc.models.BasicArgsInterpreter;
+import scc.models.OrdersInterpreter;
 
 
 public class OutputFormatterFactory {
     public OutputFormatter createByFormat(OrdersProvider ordersProvider) throws ImproperArgumentException {
-        BasicArgsInterpreter basicArgsInterpreter = new BasicArgsInterpreter(ordersProvider);
-        OutputFormat outputFormat = basicArgsInterpreter.getOutputFormat();
+        OrdersInterpreter ordersInterpreter = new OrdersInterpreter(ordersProvider);
+        OutputFormat outputFormat = ordersInterpreter.getOutputFormat();
 
         if (outputFormat != null) {
             switch (outputFormat) {

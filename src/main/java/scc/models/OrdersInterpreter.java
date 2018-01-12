@@ -5,10 +5,10 @@ import scc.services.formatter.OutputFormat;
 
 import java.util.List;
 
-public class BasicArgsInterpreter {
+public class OrdersInterpreter {
     private OrdersProvider ordersProvider;
 
-    public BasicArgsInterpreter(OrdersProvider ordersProvider) {
+    public OrdersInterpreter(OrdersProvider ordersProvider) {
         this.ordersProvider = ordersProvider;
     }
 
