@@ -47,6 +47,7 @@ public class OrdersProvider {
         return new ArgsSearcher<>(deliveredEnumClass, getAdditionalSettings());
     }
 
+
     public static class ArgsSearcher<T extends Enum<T> & Flag> {
         private final Class<T> deliveredEnumClass;
         private List<String> additionalSettings;
