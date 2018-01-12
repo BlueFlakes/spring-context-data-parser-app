@@ -27,12 +27,11 @@ public class FileReader {
 
     private List<String> readFile(Scanner file) {
         List<String> tempDataContainer = new ArrayList<>();
-        Predicate<String> isBlankLine = String::isEmpty;
 
         while (file.hasNext()) {
             String line = file.nextLine();
 
-            if (!isBlankLine.test(line)) {
+            if (!line.isEmpty()) {
                 tempDataContainer.add(line);
             }
         }
