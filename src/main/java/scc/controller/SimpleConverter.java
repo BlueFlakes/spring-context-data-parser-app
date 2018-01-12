@@ -18,12 +18,6 @@ public class SimpleConverter {
     public void convert(OrdersInterpreter ordersInterpreter)
             throws DAOException, ImproperArgumentException, DataFormatException, ImproperStateException {
 
-        handleConversion(ordersInterpreter);
-    }
-
-    private void handleConversion(OrdersInterpreter ordersInterpreter)
-            throws DAOException, DataFormatException, ImproperArgumentException, ImproperStateException {
-
         DataProcessorCreator.DataProcessor dataProcessor =
                 this.dataProcessorCreator.createDataProcessor(ordersInterpreter);
 
