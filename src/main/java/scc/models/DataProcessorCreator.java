@@ -20,18 +20,8 @@ public class DataProcessorCreator {
         this.printerFactory = printerFactory;
     }
 
-    public DataProcessorBuildingBlocks getDefaultDataProcessorBuildingBlocks()
-            throws ImproperArgumentException {
-
-        final OutputFormat defaultFormat = OutputFormat.TABLE;
-        final PrinterType defaultPrinterType = PrinterType.PRINT_TO_CONSOLE;
-
-        return new DataProcessorBuildingBlocks(defaultFormat, defaultPrinterType);
-    }
-
     public DataProcessor createDataProcessor(OrdersInterpreter ordersInterpreter)
-            throws ImproperArgumentException,
-                   ImproperStateException {
+            throws ImproperArgumentException, ImproperStateException {
 
         OutputFormatter formatter = this.formatterFactory.createByFormat(ordersInterpreter);
         OutputPrinter printer = this.printerFactory.getOutputPrinter(ordersInterpreter);
