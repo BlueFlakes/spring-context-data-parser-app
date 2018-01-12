@@ -4,12 +4,10 @@ import scc.exception.ImproperArgumentException;
 import scc.exception.DataFormatException;
 import scc.exception.ImproperStateException;
 import scc.services.document.Document;
-import scc.services.formatter.OutputFormat;
 import scc.services.formatter.OutputFormatter;
 import scc.services.formatter.OutputFormatterFactory;
 import scc.services.printer.OutputPrinter;
 import scc.services.printer.OutputPrinterFactory;
-import scc.services.printer.PrinterType;
 
 public class DataProcessorCreator {
     private OutputFormatterFactory formatterFactory;
@@ -20,11 +18,11 @@ public class DataProcessorCreator {
         this.printerFactory = printerFactory;
     }
 
-    public DataProcessor createDataProcessor(OrdersInterpreter ordersInterpreter)
+    public DataProcessor createDataProcessor(OrdersProvider ordersProvider)
             throws ImproperArgumentException, ImproperStateException {
 
-        OutputFormatter formatter = this.formatterFactory.createByFormat(ordersInterpreter);
-        OutputPrinter printer = this.printerFactory.getOutputPrinter(ordersInterpreter);
+        OutputFormatter formatter = this.formatterFactory.createByFormat(ordersProvider);
+        OutputPrinter printer = this.printerFactory.getOutputPrinter(ordersProvider);
 
         return new DataProcessor(formatter, printer);
     }

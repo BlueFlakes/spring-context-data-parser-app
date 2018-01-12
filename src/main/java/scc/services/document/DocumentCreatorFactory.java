@@ -1,11 +1,11 @@
 package scc.services.document;
 
 import scc.dao.DataLoader;
-import scc.models.OrdersInterpreter;
+import scc.models.OrdersProvider;
 
 public class DocumentCreatorFactory {
-    public DocumentCreator getDocumentCreatorBySettings(OrdersInterpreter ordersInterpreter, DataLoader dataLoader) {
-        boolean withHeaders = ordersInterpreter.getSearcher(DocumentSpecies.class).isEnumWithGivenOptionAvailable();
+    public DocumentCreator getDocumentCreatorBySettings(OrdersProvider ordersProvider, DataLoader dataLoader) {
+        boolean withHeaders = ordersProvider.getSearcher(DocumentSpecies.class).isEnumWithGivenOptionAvailable();
 
         if (withHeaders) {
             return new DocumentWithHeaders(dataLoader);

@@ -2,7 +2,7 @@ package scc.controller.starter;
 
 import scc.controller.SimpleConverter;
 import scc.dao.ReaderCreatorFactory;
-import scc.models.OrdersInterpreter;
+import scc.models.OrdersProvider;
 import scc.models.DataProcessorCreator;
 import scc.services.daoInputHandlers.DaoInputHandler;
 import scc.services.daoInputHandlers.DefaultPipelineSourceReader;
@@ -11,10 +11,10 @@ import scc.services.formatter.OutputFormatterFactory;
 import scc.services.printer.OutputPrinterFactory;
 
 public class MultipleArgsStarter implements ConverterStarter {
-    private OrdersInterpreter ordersInterpreter;
+    private OrdersProvider ordersProvider;
 
-    public MultipleArgsStarter(OrdersInterpreter ordersInterpreter) {
-        this.ordersInterpreter = ordersInterpreter;
+    public MultipleArgsStarter(OrdersProvider ordersProvider) {
+        this.ordersProvider = ordersProvider;
     }
 
     @Override
@@ -28,6 +28,6 @@ public class MultipleArgsStarter implements ConverterStarter {
         DataProcessorCreator dataProcessorCreator = new DataProcessorCreator(formatterFactory, printerFactory);
 
         SimpleConverter simpleConverter = new SimpleConverter(daoInputHandler, dataProcessorCreator);
-        simpleConverter.convert(this.ordersInterpreter);
+        simpleConverter.convert(this.ordersProvider);
     }
 }

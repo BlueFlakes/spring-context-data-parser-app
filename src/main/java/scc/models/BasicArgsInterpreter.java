@@ -6,21 +6,21 @@ import scc.services.formatter.OutputFormat;
 import java.util.List;
 
 public class BasicArgsInterpreter {
-    private OrdersInterpreter ordersInterpreter;
+    private OrdersProvider ordersProvider;
 
-    public BasicArgsInterpreter(OrdersInterpreter ordersInterpreter) {
-        this.ordersInterpreter = ordersInterpreter;
+    public BasicArgsInterpreter(OrdersProvider ordersProvider) {
+        this.ordersProvider = ordersProvider;
     }
 
     public String getPath() {
-        List<String> basicSettings = this.ordersInterpreter.getBasicSettings();
+        List<String> basicSettings = this.ordersProvider.getBasicSettings();
         int settingsAmount = basicSettings.size();
 
         return settingsAmount == 2 ? basicSettings.get(1) : basicSettings.get(0);
     }
 
     private String getExpectedOutputFormatName() {
-        List<String> basicSettings = this.ordersInterpreter.getBasicSettings();
+        List<String> basicSettings = this.ordersProvider.getBasicSettings();
         int settingsAmount = basicSettings.size();
 
         return settingsAmount == 2 ? basicSettings.get(0) : null;

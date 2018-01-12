@@ -2,29 +2,29 @@ package scc.services.printer;
 
 import scc.exception.ImproperArgumentException;
 import scc.exception.ImproperStateException;
-import scc.models.OrdersInterpreter;
+import scc.models.OrdersProvider;
 
 public class OutputPrinterFactory {
     private static final Class<PrinterType> printerTypeClass = PrinterType.class;
 
-    public OutputPrinter getOutputPrinter(OrdersInterpreter ordersInterpreter)
+    public OutputPrinter getOutputPrinter(OrdersProvider ordersProvider)
             throws ImproperArgumentException, ImproperStateException {
 
-        boolean wasUsedAdvancedOption = ordersInterpreter.getSearcher(printerTypeClass).isEnumWithGivenOptionAvailable();
+        boolean wasUsedAdvancedOption = ordersProvider.getSearcher(printerTypeClass).isEnumWithGivenOptionAvailable();
 
         if (wasUsedAdvancedOption) {
-            return getChosenOutputPrinter(ordersInterpreter);
+            return getChosenOutputPrinter(ordersProvider);
         }
 
         return new ConsolePrinter();
     }
 
-    private OutputPrinter getChosenOutputPrinter(OrdersInterpreter ordersInterpreter) throws ImproperStateException {
-        PrinterType printerType = ordersInterpreter.getSearcher(printerTypeClass).findEnumByFlag();
+    private OutputPrinter getChosenOutputPrinter(OrdersProvider ordersProvider) throws ImproperStateException {
+        PrinterType printerType = ordersProvider.getSearcher(printerTypeClass).findEnumByFlag();
 
         switch (printerType) {
             case PRINT_TO_FILE:
-                return new FilePrinter(ordersInterpreter);
+                return new FilePrinter(ordersProvider);
 
             default:
                 throw new ImproperStateException("Probably app state is broken inside OutputPrinterFactory");

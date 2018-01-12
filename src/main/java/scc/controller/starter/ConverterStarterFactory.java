@@ -1,6 +1,6 @@
 package scc.controller.starter;
 
-import scc.models.OrdersInterpreter;
+import scc.models.OrdersProvider;
 import scc.view.UserInterface;
 
 public class ConverterStarterFactory {
@@ -10,7 +10,7 @@ public class ConverterStarterFactory {
         if (size == 0) {
             return new ZeroArgStarter(new UserInterface());
         } else  {
-            return new MultipleArgsStarter(new OrdersInterpreter(args));
+            return new MultipleArgsStarter(new OrdersProvider(args));
         }
     }
 }

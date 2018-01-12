@@ -7,11 +7,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class OrdersInterpreter {
+public class OrdersProvider {
     private String[] args;
     private final int separationIndex = 2;
 
-    public OrdersInterpreter(String[] args) {
+    public OrdersProvider(String[] args) {
         this.args = args;
     }
 
