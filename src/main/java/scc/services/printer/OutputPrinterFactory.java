@@ -2,6 +2,7 @@ package scc.services.printer;
 
 import scc.exception.ImproperArgumentException;
 import scc.exception.ImproperStateException;
+import scc.models.OrdersInterpreter;
 import scc.models.OrdersProvider;
 
 public class OutputPrinterFactory {
@@ -24,7 +25,7 @@ public class OutputPrinterFactory {
 
         switch (printerType) {
             case PRINT_TO_FILE:
-                return new FilePrinter(ordersProvider);
+                return new FilePrinter(new OrdersInterpreter(ordersProvider));
 
             default:
                 throw new ImproperStateException("Probably app state is broken inside OutputPrinterFactory");

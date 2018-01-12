@@ -1,16 +1,18 @@
 package scc.services.printer;
 
+import scc.exception.InvalidArgumentCombinationException;
+import scc.models.OrdersInterpreter;
 import scc.models.OrdersProvider;
 
 import java.io.FileWriter;
 import java.io.PrintWriter;
+import java.util.function.Supplier;
 
 public class FilePrinter implements OutputPrinter {
-    private OrdersProvider ordersProvider;
-    private static final String defaultFileName = "defaultNameForFile.txt";
+    private OrdersInterpreter ordersInterpreter;
 
-    public FilePrinter(OrdersProvider ordersProvider) {
-        this.ordersProvider = ordersProvider;
+    public FilePrinter(OrdersInterpreter ordersInterpreter) {
+        this.ordersInterpreter = ordersInterpreter;
     }
 
     @Override
@@ -22,14 +24,8 @@ public class FilePrinter implements OutputPrinter {
         printWriter.close();
     }
 
-    private String getFileName() {
+    private String getFileName() throws InvalidArgumentCombinationException {
         final String keyPrefix = "name=";
-
-        return this.ordersProvider.getAdditionalSettings().stream()
-                                                           .filter(s -> s.startsWith(keyPrefix))
-                                                           .filter(s -> s.length() > keyPrefix.length())
-                                                           .map(s -> s.substring(keyPrefix.length(), s.length()))
-                                                           .findFirst()
-                                                           .orElse(defaultFileName);
+        return this.ordersInterpreter.getPrefixValueFromArgsCombination(keyPrefix);
     }
 }

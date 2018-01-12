@@ -1,9 +1,11 @@
 package scc.models;
 
 import scc.exception.ImproperArgumentException;
+import scc.exception.InvalidArgumentCombinationException;
 import scc.services.formatter.OutputFormat;
 
 import java.util.List;
+import java.util.function.Supplier;
 
 public class OrdersInterpreter {
     private OrdersProvider ordersProvider;
@@ -40,5 +42,17 @@ public class OrdersInterpreter {
         }
 
         return null;
+    }
+
+    public String getPrefixValueFromArgsCombination(final String keyPrefix) throws InvalidArgumentCombinationException {
+        Supplier<String> errorMSg = () -> "Incorrect combination of arguments";
+
+        return this.ordersProvider
+                   .getAdditionalSettings().stream()
+                                           .filter(s -> s.startsWith(keyPrefix))
+                                           .filter(s -> s.length() > keyPrefix.length())
+                                           .map(s -> s.substring(keyPrefix.length(), s.length()))
+                                           .findFirst()
+                                           .orElseThrow(() -> new InvalidArgumentCombinationException(errorMSg.get()));
     }
 }
