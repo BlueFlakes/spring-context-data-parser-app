@@ -2,11 +2,7 @@ package scc.controller.starter;
 
 import scc.controller.SimpleConverter;
 import scc.dao.ReaderCreatorFactory;
-import scc.services.formatter.OutputFormat;
-import scc.services.printer.PrinterType;
 import scc.models.ArgsInterpreter;
-import scc.models.CsvArgsInterpreter;
-import scc.models.DataProcessorBuildingBlocks;
 import scc.models.DataProcessorCreator;
 import scc.services.daoInputHandlers.DaoInputHandler;
 import scc.services.daoInputHandlers.DefaultPipelineSourceReader;
@@ -32,8 +28,7 @@ public class ManyArgsStarter implements ConverterStarter {
         DataProcessorCreator dataProcessorCreator = new DataProcessorCreator(formatterFactory, printerFactory);
 
         SimpleConverter simpleConverter = new SimpleConverter(daoInputHandler, dataProcessorCreator);
-        CsvArgsInterpreter csvArgsInterpreter = new CsvArgsInterpreter(this.argsInterpreter);
-        OutputFormat outputFormat = csvArgsInterpreter.getOutputFormat();
-        simpleConverter.convert(argsInterpreter, new DataProcessorBuildingBlocks(outputFormat, PrinterType.PRINT_TO_FILE));
+
+        simpleConverter.convert(this.argsInterpreter);
     }
 }

@@ -16,24 +16,17 @@ public class SimpleConverter {
         this.dataProcessorCreator = dataProcessorCreator;
     }
 
-    public void convert(ArgsInterpreter argsInterpreter, DataProcessorBuildingBlocks processorBuildingBlocks)
-            throws DAOException, ImproperArgumentException, DataFormatException, ImproperStateException {
-
-        handleConversion(argsInterpreter, processorBuildingBlocks);
-    }
-
     public void convert(ArgsInterpreter argsInterpreter)
             throws DAOException, ImproperArgumentException, DataFormatException, ImproperStateException {
 
-        DataProcessorBuildingBlocks buildingBlocks = this.dataProcessorCreator.getDefaultDataProcessorBuildingBlocks();
-        handleConversion(argsInterpreter, buildingBlocks);
+        handleConversion(argsInterpreter);
     }
 
-    private void handleConversion(ArgsInterpreter argsInterpreter, DataProcessorBuildingBlocks processorBuildingBlocks)
+    private void handleConversion(ArgsInterpreter argsInterpreter)
             throws DAOException, DataFormatException, ImproperArgumentException, ImproperStateException {
 
         DataProcessorCreator.DataProcessor dataProcessor =
-                this.dataProcessorCreator.createDataProcessor(processorBuildingBlocks, argsInterpreter);
+                this.dataProcessorCreator.createDataProcessor(argsInterpreter);
 
         Document document = this.daoInputHandler.prepareData(argsInterpreter);
         dataProcessor.process(document);

@@ -29,14 +29,11 @@ public class DataProcessorCreator {
         return new DataProcessorBuildingBlocks(defaultFormat, defaultPrinterType);
     }
 
-    public DataProcessor createDataProcessor(DataProcessorBuildingBlocks buildingBlocks,
-                                             ArgsInterpreter argsInterpreter)
+    public DataProcessor createDataProcessor(ArgsInterpreter argsInterpreter)
             throws ImproperArgumentException,
                    ImproperStateException {
 
-        OutputFormat outputFormat = buildingBlocks.getOutputFormat();
-        OutputFormatter formatter = this.formatterFactory.createByFormat(outputFormat);
-        
+        OutputFormatter formatter = this.formatterFactory.createByFormat(argsInterpreter);
         OutputPrinter printer = this.printerFactory.getOutputPrinter(argsInterpreter);
 
         return new DataProcessor(formatter, printer);
