@@ -2,6 +2,7 @@ package scc.models;
 
 import scc.exception.ImproperArgumentException;
 import scc.exception.DataFormatException;
+import scc.exception.ImproperStateException;
 import scc.services.document.Document;
 import scc.services.formatter.OutputFormat;
 import scc.services.formatter.OutputFormatter;
@@ -19,25 +20,24 @@ public class DataProcessorCreator {
         this.printerFactory = printerFactory;
     }
 
-    public DataProcessor createDefaultDataProcessor()
+    public DataProcessorBuildingBlocks getDefaultDataProcessorBuildingBlocks()
             throws ImproperArgumentException {
 
         final OutputFormat defaultFormat = OutputFormat.TABLE;
         final PrinterType defaultPrinterType = PrinterType.PRINT_TO_CONSOLE;
 
-        DataProcessorBuildingBlocks dataProcessorBuildingBlocks =
-                new DataProcessorBuildingBlocks(defaultFormat, defaultPrinterType);
-
-        return createDataProcessor(dataProcessorBuildingBlocks);
+        return new DataProcessorBuildingBlocks(defaultFormat, defaultPrinterType);
     }
 
-    public DataProcessor createDataProcessor(DataProcessorBuildingBlocks buildingBlocks)
-            throws ImproperArgumentException {
+    public DataProcessor createDataProcessor(DataProcessorBuildingBlocks buildingBlocks,
+                                             ArgsInterpreter argsInterpreter)
+            throws ImproperArgumentException,
+                   ImproperStateException {
+
         OutputFormat outputFormat = buildingBlocks.getOutputFormat();
         OutputFormatter formatter = this.formatterFactory.createByFormat(outputFormat);
-
-        PrinterType printerType = buildingBlocks.getPrinterType();
-        OutputPrinter printer = this.printerFactory.getOutputPrinter(printerType);
+        
+        OutputPrinter printer = this.printerFactory.getOutputPrinter(argsInterpreter);
 
         return new DataProcessor(formatter, printer);
     }
@@ -54,13 +54,21 @@ public class DataProcessorCreator {
         public void process(Document document) throws DataFormatException {
             String formattedData;
 
+            // TODO delegate, too much similar code in one method
+
             try {
                 formattedData = this.formatter.getFormattedData(document);
             } catch (Exception e) {
+                e.printStackTrace();
                 throw new DataFormatException("Broken data format delivered. Expected valid Csv Format");
             }
 
-            this.printer.print(formattedData);
+            try {
+                this.printer.print(formattedData);
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.out.println("do something here...");
+            }
         }
     }
 }

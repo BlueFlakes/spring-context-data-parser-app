@@ -5,7 +5,7 @@ import scc.utils.enums.EnumUtils;
 
 public enum PrinterType implements Flag {
     PRINT_TO_CONSOLE(null),
-    PRINT_TO_FILE("flag");
+    PRINT_TO_FILE("out>file");
 
     private final String flag;
 
