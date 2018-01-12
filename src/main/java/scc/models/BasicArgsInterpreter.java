@@ -5,10 +5,10 @@ import scc.services.formatter.OutputFormat;
 
 import java.util.List;
 
-public class CsvArgsInterpreter {
+public class BasicArgsInterpreter {
     private ArgsInterpreter argsInterpreter;
 
-    public CsvArgsInterpreter(ArgsInterpreter argsInterpreter) {
+    public BasicArgsInterpreter(ArgsInterpreter argsInterpreter) {
         this.argsInterpreter = argsInterpreter;
     }
 
@@ -39,6 +39,6 @@ public class CsvArgsInterpreter {
             throw new ImproperArgumentException("Incorrect output formatter identity delivered.");
         }
 
-        return OutputFormat.TABLE;
+        return null;
     }
 }
