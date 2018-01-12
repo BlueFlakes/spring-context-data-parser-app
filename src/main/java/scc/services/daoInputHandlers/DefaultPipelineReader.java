@@ -11,13 +11,13 @@ import scc.services.document.Document;
 import scc.services.document.DocumentCreator;
 import scc.services.document.DocumentCreatorFactory;
 
-public class DefaultPipelineSourceReader implements DaoInputHandler {
+public class DefaultPipelineReader implements DaoInputHandler {
     private final DataLoaderType dataLoaderType = DataLoaderType.CSV_READER;
     private ReaderCreatorFactory readerCreatorFactory;
     private DocumentCreatorFactory documentCreatorFactory;
 
-    public DefaultPipelineSourceReader(ReaderCreatorFactory readerCreatorFactory,
-                                       DocumentCreatorFactory documentCreatorFactory) {
+    public DefaultPipelineReader(ReaderCreatorFactory readerCreatorFactory,
+                                 DocumentCreatorFactory documentCreatorFactory) {
 
         this.readerCreatorFactory = readerCreatorFactory;
         this.documentCreatorFactory = documentCreatorFactory;
