@@ -10,10 +10,10 @@ import scc.services.document.DocumentCreatorFactory;
 import scc.services.formatter.OutputFormatterFactory;
 import scc.services.printer.OutputPrinterFactory;
 
-public class ManyArgsStarter implements ConverterStarter {
+public class MultipleArgsStarter implements ConverterStarter {
     private ArgsInterpreter argsInterpreter;
 
-    public ManyArgsStarter(ArgsInterpreter argsInterpreter) {
+    public MultipleArgsStarter(ArgsInterpreter argsInterpreter) {
         this.argsInterpreter = argsInterpreter;
     }
 
