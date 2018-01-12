@@ -35,7 +35,7 @@ public class DocumentWithDefaultHeaders implements DocumentCreator {
         final String defaultName = "property";
 
         return IntStream.rangeClosed(1, columnsAmount)
-                .mapToObj(idx -> defaultName + idx)
-                .toArray(String[]::new);
+                        .mapToObj(idx -> defaultName + idx)
+                        .toArray(String[]::new);
     }
 }
