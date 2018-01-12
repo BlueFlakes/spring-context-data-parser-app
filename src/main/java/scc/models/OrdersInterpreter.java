@@ -7,11 +7,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class ArgsInterpreter {
+public class OrdersInterpreter {
     private String[] args;
     private final int separationIndex = 2;
 
-    public ArgsInterpreter(String[] args) {
+    public OrdersInterpreter(String[] args) {
         this.args = args;
     }
 
@@ -47,7 +47,7 @@ public class ArgsInterpreter {
             this.additionalSettings = additionalSettings;
             this.deliveredEnumClass = deliveredEnumClass;
         }
-        
+
         public T findEnumByFlag() {
             if (this.deliveredEnumClass.isEnum()) {
                 T[] enumConstantsContainer = this.deliveredEnumClass.getEnumConstants();

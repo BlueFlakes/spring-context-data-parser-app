@@ -2,9 +2,8 @@ package scc.controller;
 
 import scc.exception.*;
 import scc.services.daoInputHandlers.DaoInputHandler;
-import scc.models.ArgsInterpreter;
+import scc.models.OrdersInterpreter;
 import scc.models.DataProcessorCreator;
-import scc.models.DataProcessorBuildingBlocks;
 import scc.services.document.Document;
 
 public class SimpleConverter {
@@ -16,19 +15,19 @@ public class SimpleConverter {
         this.dataProcessorCreator = dataProcessorCreator;
     }
 
-    public void convert(ArgsInterpreter argsInterpreter)
+    public void convert(OrdersInterpreter ordersInterpreter)
             throws DAOException, ImproperArgumentException, DataFormatException, ImproperStateException {
 
-        handleConversion(argsInterpreter);
+        handleConversion(ordersInterpreter);
     }
 
-    private void handleConversion(ArgsInterpreter argsInterpreter)
+    private void handleConversion(OrdersInterpreter ordersInterpreter)
             throws DAOException, DataFormatException, ImproperArgumentException, ImproperStateException {
 
         DataProcessorCreator.DataProcessor dataProcessor =
-                this.dataProcessorCreator.createDataProcessor(argsInterpreter);
+                this.dataProcessorCreator.createDataProcessor(ordersInterpreter);
 
-        Document document = this.daoInputHandler.prepareData(argsInterpreter);
+        Document document = this.daoInputHandler.prepareData(ordersInterpreter);
         dataProcessor.process(document);
     }
 }

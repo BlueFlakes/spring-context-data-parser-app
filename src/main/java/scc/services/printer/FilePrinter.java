@@ -1,16 +1,16 @@
 package scc.services.printer;
 
-import scc.models.ArgsInterpreter;
+import scc.models.OrdersInterpreter;
 
 import java.io.FileWriter;
 import java.io.PrintWriter;
 
 public class FilePrinter implements OutputPrinter {
-    private ArgsInterpreter argsInterpreter;
+    private OrdersInterpreter ordersInterpreter;
     private static final String defaultFileName = "defaultNameForFile.txt";
 
-    public FilePrinter(ArgsInterpreter argsInterpreter) {
-        this.argsInterpreter = argsInterpreter;
+    public FilePrinter(OrdersInterpreter ordersInterpreter) {
+        this.ordersInterpreter = ordersInterpreter;
     }
 
     @Override
@@ -25,7 +25,7 @@ public class FilePrinter implements OutputPrinter {
     private String getFileName() {
         final String keyPrefix = "name=";
 
-        return this.argsInterpreter.getAdditionalSettings().stream()
+        return this.ordersInterpreter.getAdditionalSettings().stream()
                                                            .filter(s -> s.startsWith(keyPrefix))
                                                            .filter(s -> s.length() > keyPrefix.length())
                                                            .map(s -> s.substring(keyPrefix.length(), s.length()))
