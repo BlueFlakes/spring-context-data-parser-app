@@ -44,7 +44,7 @@ public class OrdersInterpreter {
         return null;
     }
 
-    public String getPrefixValueFromArgsCombination(final String keyPrefix) throws InvalidArgumentCombinationException {
+    public String getPrefixValueFromAdditionalInputs(final String keyPrefix) throws InvalidArgumentCombinationException {
         Supplier<String> errorMSg = () -> "Incorrect combination of arguments";
 
         return this.ordersProvider

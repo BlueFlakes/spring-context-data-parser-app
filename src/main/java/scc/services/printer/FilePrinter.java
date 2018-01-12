@@ -2,11 +2,9 @@ package scc.services.printer;
 
 import scc.exception.InvalidArgumentCombinationException;
 import scc.models.OrdersInterpreter;
-import scc.models.OrdersProvider;
 
 import java.io.FileWriter;
 import java.io.PrintWriter;
-import java.util.function.Supplier;
 
 public class FilePrinter implements OutputPrinter {
     private OrdersInterpreter ordersInterpreter;
@@ -26,6 +24,6 @@ public class FilePrinter implements OutputPrinter {
 
     private String getFileName() throws InvalidArgumentCombinationException {
         final String keyPrefix = "name=";
-        return this.ordersInterpreter.getPrefixValueFromArgsCombination(keyPrefix);
+        return this.ordersInterpreter.getPrefixValueFromAdditionalInputs(keyPrefix);
     }
 }
