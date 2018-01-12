@@ -11,7 +11,7 @@ import scc.services.document.Document;
 import scc.services.document.DocumentCreator;
 import scc.services.document.DocumentCreatorFactory;
 
-public class DefaultPipelineReader implements DaoInputHandler {
+public class DefaultPipelineReader implements DaoHandler {
     private final DataLoaderType dataLoaderType = DataLoaderType.CSV_READER;
     private ReaderCreatorFactory readerCreatorFactory;
     private DocumentCreatorFactory documentCreatorFactory;

@@ -5,6 +5,6 @@ import scc.exception.ImproperArgumentException;
 import scc.models.OrdersProvider;
 import scc.services.document.Document;
 
-public interface DaoInputHandler {
+public interface DaoHandler {
     Document prepareData(OrdersProvider ordersProvider) throws DAOException, ImproperArgumentException;
 }
