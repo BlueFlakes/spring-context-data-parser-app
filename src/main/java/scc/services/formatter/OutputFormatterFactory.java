@@ -8,9 +8,8 @@ import scc.models.BasicArgsInterpreter;
 public class OutputFormatterFactory {
     public OutputFormatter createByFormat(ArgsInterpreter argsInterpreter) throws ImproperArgumentException {
         BasicArgsInterpreter basicArgsInterpreter = new BasicArgsInterpreter(argsInterpreter);
-//        OutputFormat outputFormat = basicArgsInterpreter.getOutputFormat();
-        OutputFormat outputFormat = OutputFormat.TABLE;
-        
+        OutputFormat outputFormat = basicArgsInterpreter.getOutputFormat();
+
         if (outputFormat != null) {
             switch (outputFormat) {
                 case XML:
