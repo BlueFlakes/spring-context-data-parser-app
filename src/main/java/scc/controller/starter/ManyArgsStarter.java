@@ -34,6 +34,6 @@ public class ManyArgsStarter implements ConverterStarter {
         SimpleConverter simpleConverter = new SimpleConverter(daoInputHandler, dataProcessorCreator);
         CsvArgsInterpreter csvArgsInterpreter = new CsvArgsInterpreter(this.argsInterpreter);
         OutputFormat outputFormat = csvArgsInterpreter.getOutputFormat();
-        simpleConverter.convert(argsInterpreter, new DataProcessorBuildingBlocks(outputFormat, PrinterType.PRINT_TO_CONSOLE));
+        simpleConverter.convert(argsInterpreter, new DataProcessorBuildingBlocks(outputFormat, PrinterType.PRINT_TO_FILE));
     }
 }
