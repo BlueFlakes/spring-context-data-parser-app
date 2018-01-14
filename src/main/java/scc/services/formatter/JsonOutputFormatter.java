@@ -15,7 +15,11 @@ public class JsonOutputFormatter implements OutputFormatter {
 
     @Override
     public String getFormattedData(Document document) throws Exception {
+        List<Map<String, String>> mappedContentFromDocument = mapDocumentAsListOfMaps(document);
+        return objectMapper.writeValueAsString(mappedContentFromDocument);
+    }
 
+    private List<Map<String, String>> mapDocumentAsListOfMaps(Document document) {
         String[] headers = document.getHeaders();
         int headersAmount = headers.length;
 
@@ -36,6 +40,6 @@ public class JsonOutputFormatter implements OutputFormatter {
             mappedRecords.add(map);
         }
 
-        return objectMapper.writeValueAsString(mappedRecords);
+        return mappedRecords;
     }
 }
