@@ -12,7 +12,7 @@ public class ReaderCreatorFactory {
 
         switch (loaderType) {
             case CSV_READER:
-                return new CsvReaderCreator(new OrdersInterpreter(ordersProvider));
+                return new CsvReaderCreator(ordersProvider.getInterpreter());
 
             default:
                 throw new ImproperArgumentException("Delivered value does not match any \"ReaderSettingsCreator\"");
