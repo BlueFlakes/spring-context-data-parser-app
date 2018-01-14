@@ -3,6 +3,7 @@ package scc.services.document;
 import scc.dao.DataLoader;
 import scc.exception.DAOException;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -22,13 +23,10 @@ public class DocumentWithDefaultHeaders implements DocumentCreator {
     }
 
     private int getExpectedAmountOfHeaders(List<String[]> loadedData) {
-        if (loadedData.size() > 0) {
-            String[] firstRow = loadedData.get(0);
-
-            return firstRow.length;
-        }
-
-        return 0;
+        return loadedData.stream()
+                         .mapToInt(s -> s.length)
+                         .max()
+                         .orElse(0);
     }
 
     private String[] generateHeaders(int columnsAmount) {
