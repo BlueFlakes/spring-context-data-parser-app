@@ -7,14 +7,15 @@ import scc.exception.ImproperArgumentException;
 public class PrinterFactoryProducer {
 
     public PrinterAbstractFactory getPrinterFactory(PrinterFactories printerFactories) throws ImproperArgumentException {
-        switch (printerFactories) {
-            case ADVANCED:
-                return new AdvancedOutputPrinterFactory();
-            case DEFAULT:
-                return new DefaultOutputPrinterFactory();
 
-            default:
-                throw new ImproperArgumentException("PrinterFactories value shouldn't be null!");
+        if (printerFactories == PrinterFactories.ADVANCED) {
+            return new AdvancedOutputPrinterFactory();
         }
+
+        if (printerFactories == PrinterFactories.DEFAULT) {
+            return new DefaultOutputPrinterFactory();
+        }
+
+        throw new ImproperArgumentException("Invalid argument provided: " + printerFactories);
     }
 }

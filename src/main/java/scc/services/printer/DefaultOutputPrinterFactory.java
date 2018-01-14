@@ -10,13 +10,12 @@ class DefaultOutputPrinterFactory extends PrinterAbstractFactory {
 
     @Override
     OutputPrinter getOutputPrinterWithSettledState(PrinterType printerType) throws ImproperArgumentException {
-        switch (printerType) {
-            case PRINT_TO_CONSOLE:
-                return new ConsolePrinter();
 
-            default:
-                throw new ImproperArgumentException("This OutputPrinter does not exist");
+        if (printerType == PrinterType.PRINT_TO_CONSOLE) {
+            return new ConsolePrinter();
         }
+
+        throw new ImproperArgumentException("This OutputPrinter does not exist");
     }
 
     @Override

@@ -12,13 +12,11 @@ class AdvancedOutputPrinterFactory extends PrinterAbstractFactory {
     @Override
     OutputPrinter getOutputPrinterWithUserInputs(PrinterType printerType,
                                                  OrdersProvider ordersProvider) throws ImproperArgumentException {
-        switch (printerType) {
-            case PRINT_TO_FILE:
-                return new FilePrinter(ordersProvider.getInterpreter());
-
-            default:
-                throw new ImproperArgumentException("Probably app state is broken inside OutputPrinterFactory");
+        if (printerType == PrinterType.PRINT_TO_FILE) {
+            return new FilePrinter(ordersProvider.getInterpreter());
         }
+
+        throw new ImproperArgumentException("Incorrect argument provided: " + printerType);
     }
 
     @Override
