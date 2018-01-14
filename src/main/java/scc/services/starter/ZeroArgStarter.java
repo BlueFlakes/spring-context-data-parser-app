@@ -3,7 +3,7 @@ package scc.services.starter;
 import org.springframework.stereotype.Component;
 import scc.view.UserInterface;
 
-@Component()
+@Component
 public class ZeroArgStarter implements ConverterStarter {
     private UserInterface userInterface;
 
