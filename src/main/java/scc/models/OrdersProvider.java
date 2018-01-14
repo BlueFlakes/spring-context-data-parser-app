@@ -12,11 +12,17 @@ import java.util.stream.IntStream;
 public class OrdersProvider {
     private final ClassPathXmlApplicationContext ctx =
             new ClassPathXmlApplicationContext("applicationContext.xml");
+    private final OrdersInterpreter ordersInterpreter;
     private final int separationIndex = 2;
     private String[] args;
 
     public OrdersProvider(String[] args) {
         this.args = args;
+        this.ordersInterpreter = new OrdersInterpreter(this);
+    }
+
+    public OrdersInterpreter getInterpreter( ) {
+        return ordersInterpreter;
     }
 
     public ClassPathXmlApplicationContext getAppContext() {
