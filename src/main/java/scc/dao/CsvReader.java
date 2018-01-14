@@ -1,8 +1,13 @@
 package scc.dao;
 
+import org.apache.commons.lang3.StringUtils;
 import scc.exception.DAOException;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.regex.PatternSyntaxException;
 import java.util.stream.Collectors;
 
 public class CsvReader implements DataLoader {
@@ -24,7 +29,7 @@ public class CsvReader implements DataLoader {
 
     private List<String[]> parseData(List<String> deliveredData) {
         return deliveredData.stream()
-                            .map(sentence -> sentence.split(this.delimiter))
+                            .map(sentence -> StringUtils.split(sentence, this.delimiter))
                             .collect(Collectors.toList());
     }
 }
