@@ -1,4 +1,4 @@
-package scc.controller.starter;
+package scc.services.starter;
 
 import scc.models.OrdersProvider;
 
