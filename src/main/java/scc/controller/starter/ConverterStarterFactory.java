@@ -1,7 +1,6 @@
 package scc.controller.starter;
 
 import scc.models.OrdersProvider;
-import scc.view.UserInterface;
 
 public class ConverterStarterFactory {
     public ConverterStarter getProperStarter(String[] args) {
