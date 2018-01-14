@@ -1,8 +1,8 @@
 package scc;
 
 
-import scc.controller.starter.ConverterStarter;
-import scc.controller.starter.ConverterStarterFactory;
+import scc.services.starter.ConverterStarter;
+import scc.services.starter.ConverterStarterFactory;
 
 public class App {
     public static void main(String[] args) {
