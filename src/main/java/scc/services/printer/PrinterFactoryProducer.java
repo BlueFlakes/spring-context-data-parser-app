@@ -2,11 +2,12 @@ package scc.services.printer;
 
 import org.springframework.stereotype.Component;
 import scc.exception.ImproperArgumentException;
+import scc.exception.ImproperStateException;
 
 @Component
 public class PrinterFactoryProducer {
 
-    public PrinterAbstractFactory getPrinterFactory(PrinterFactories printerFactories) throws ImproperArgumentException {
+    public PrinterAbstractFactory getPrinterFactory(PrinterFactories printerFactories) throws ImproperStateException {
 
         if (printerFactories == PrinterFactories.ADVANCED) {
             return new AdvancedOutputPrinterFactory();
@@ -16,6 +17,6 @@ public class PrinterFactoryProducer {
             return new DefaultOutputPrinterFactory();
         }
 
-        throw new ImproperArgumentException("Invalid argument provided: " + printerFactories);
+        throw new ImproperStateException("WARNING: This case should never appear.");
     }
 }

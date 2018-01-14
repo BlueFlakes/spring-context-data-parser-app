@@ -15,7 +15,7 @@ class DefaultOutputPrinterFactory extends PrinterAbstractFactory {
             return new ConsolePrinter();
         }
 
-        throw new ImproperArgumentException("This OutputPrinter does not exist");
+        throw new ImproperArgumentException("Incorrect argument, given OutputPrinter does not exist.");
     }
 
     @Override

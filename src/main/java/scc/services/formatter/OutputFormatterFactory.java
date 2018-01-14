@@ -21,6 +21,6 @@ public class OutputFormatterFactory {
             return new TableOutputFormatter();
         }
 
-        throw new ImproperArgumentException("Invalid argument delivered: " + outputFormat);
+        throw new ImproperArgumentException("Invalid argument, given OutputFormatter does not exist.");
     }
 }

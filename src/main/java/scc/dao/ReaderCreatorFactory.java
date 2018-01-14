@@ -15,6 +15,6 @@ public class ReaderCreatorFactory {
             return new CsvReaderCreator(ordersProvider.getInterpreter());
         }
 
-        throw new ImproperArgumentException("Incorrect value delivered: " + loaderType);
+        throw new ImproperArgumentException("Incorrect argument, expected DataLoader does not exist.");
     }
 }

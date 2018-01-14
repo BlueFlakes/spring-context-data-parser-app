@@ -16,7 +16,7 @@ class AdvancedOutputPrinterFactory extends PrinterAbstractFactory {
             return new FilePrinter(ordersProvider.getInterpreter());
         }
 
-        throw new ImproperArgumentException("Incorrect argument provided: " + printerType);
+        throw new ImproperArgumentException("Incorrect argument, given OutputPrinter does not exist.");
     }
 
     @Override
