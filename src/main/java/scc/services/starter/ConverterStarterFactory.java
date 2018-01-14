@@ -9,7 +9,7 @@ public class ConverterStarterFactory {
 
         if (size == 0) {
             return new ZeroArgStarter();
-        } else  {
+        } else {
             return new MultipleArgsStarter(ordersProvider);
         }
     }
