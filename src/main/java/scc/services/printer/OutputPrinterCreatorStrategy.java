@@ -1,11 +1,11 @@
 package scc.services.printer;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import scc.exception.ImproperArgumentException;
 import scc.exception.ImproperStateException;
 import scc.models.OrdersProvider;
 
-@Component
+@Service
 public class OutputPrinterCreatorStrategy implements PrinterCreator {
     private PrinterFactoryProducer factoryProducer;
 
