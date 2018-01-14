@@ -12,7 +12,7 @@ public class App {
             starter.start();
 
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 }

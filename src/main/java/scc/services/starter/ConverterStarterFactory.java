@@ -8,8 +8,7 @@ public class ConverterStarterFactory {
         int size = args.length;
 
         if (size == 0) {
-            return ordersProvider.getAppContext()
-                                 .getBean(ZeroArgStarter.class);
+            return new ZeroArgStarter();
         } else  {
             return new MultipleArgsStarter(ordersProvider);
         }
