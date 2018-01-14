@@ -30,8 +30,10 @@ public class FileReader {
 
         while (file.hasNext()) {
             String line = file.nextLine();
+            Predicate<String> isAnyOtherSignThanWhiteSpaceInside = sentence -> !sentence.chars()
+                                                                                        .allMatch(c -> c == ' ');
 
-            if (!line.isEmpty()) {
+            if (!line.isEmpty() && isAnyOtherSignThanWhiteSpaceInside.test(line)) {
                 tempDataContainer.add(line);
             }
         }
