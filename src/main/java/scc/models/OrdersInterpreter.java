@@ -1,8 +1,6 @@
 package scc.models;
 
-import scc.exception.ImproperArgumentException;
 import scc.exception.InvalidArgumentCombinationException;
-import scc.services.formatter.OutputFormat;
 
 import java.util.List;
 import java.util.Optional;

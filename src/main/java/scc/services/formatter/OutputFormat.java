@@ -1,6 +1,5 @@
 package scc.services.formatter;
 
-import scc.interfaces.Flag;
 import scc.utils.enums.EnumUtils;
 
 public enum OutputFormat {
