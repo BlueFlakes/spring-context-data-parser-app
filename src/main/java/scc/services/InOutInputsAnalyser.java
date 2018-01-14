@@ -1,7 +1,10 @@
-package scc.models;
+package scc.services;
 
 import org.springframework.stereotype.Component;
 import scc.exception.ImproperArgumentException;
+import scc.models.DataProcessorBuildingBlocks;
+import scc.models.OrdersInterpreter;
+import scc.models.OrdersProvider;
 import scc.services.formatter.OutputFormat;
 import scc.services.printer.PrinterType;
 @Component

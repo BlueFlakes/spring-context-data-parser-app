@@ -1,11 +1,11 @@
-package scc.models;
+package scc.services;
 
 import org.springframework.stereotype.Component;
+import scc.controller.DataProcessor;
 import scc.exception.ImproperArgumentException;
-import scc.exception.DataFormatException;
 import scc.exception.ImproperStateException;
-import scc.exception.PrinterFailureException;
-import scc.services.document.Document;
+import scc.models.DataProcessorBuildingBlocks;
+import scc.models.OrdersProvider;
 import scc.services.formatter.OutputFormatter;
 import scc.services.formatter.OutputFormatterFactory;
 import scc.services.printer.*;
@@ -37,34 +37,4 @@ public class DataProcessorCreator {
         return new DataProcessor(formatter, printer);
     }
 
-    public class DataProcessor {
-        private final OutputFormatter formatter;
-        private final OutputPrinter printer;
-
-        private DataProcessor(OutputFormatter formatter, OutputPrinter printer) {
-            this.formatter = formatter;
-            this.printer = printer;
-        }
-
-        public void process(Document document) throws DataFormatException, PrinterFailureException {
-            String formattedData = getFormatterResult(document);
-            runPrinter(formattedData);
-        }
-
-        private String getFormatterResult(Document document) throws DataFormatException {
-            try {
-                return this.formatter.getFormattedData(document);
-            } catch (Exception e) {
-                throw new DataFormatException("Broken data format delivered. Expected valid Csv Format");
-            }
-        }
-
-        private void runPrinter(String formattedData) throws PrinterFailureException {
-            try {
-                this.printer.print(formattedData);
-            } catch (Exception e) {
-                throw new PrinterFailureException("Printer failed.");
-            }
-        }
-    }
 }
