@@ -1,6 +1,6 @@
 package scc.controller;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 import scc.exception.DAOException;
 import scc.exception.DataFormatException;
 import scc.exception.ImproperArgumentException;
@@ -10,7 +10,7 @@ import scc.models.OrdersProvider;
 import scc.services.daoInputHandlers.DaoHandler;
 import scc.services.document.Document;
 
-@Component
+@Controller
 public class SimpleConverter {
     private final DaoHandler daoHandler;
     private final DataProcessorCreator dataProcessorCreator;
