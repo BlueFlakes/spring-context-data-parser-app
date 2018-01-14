@@ -7,24 +7,31 @@ import scc.exception.ImproperStateException;
 import scc.services.document.Document;
 import scc.services.formatter.OutputFormatter;
 import scc.services.formatter.OutputFormatterFactory;
-import scc.services.printer.OutputPrinter;
-import scc.services.printer.OutputPrinterFactory;
+import scc.services.printer.*;
 
 @Component
 public class DataProcessorCreator {
     private OutputFormatterFactory formatterFactory;
-    private OutputPrinterFactory printerFactory;
+    private PrinterCreator printerCreator;
+    private InOutInputsAnalyser inOutInputsAnalyser;
 
-    public DataProcessorCreator(OutputFormatterFactory formatterFactory, OutputPrinterFactory printerFactory) {
+    public DataProcessorCreator(OutputFormatterFactory formatterFactory,
+                                PrinterCreator printerCreator,
+                                InOutInputsAnalyser inOutInputsAnalyser) {
+
         this.formatterFactory = formatterFactory;
-        this.printerFactory = printerFactory;
+        this.printerCreator = printerCreator;
+        this.inOutInputsAnalyser = inOutInputsAnalyser;
     }
 
     public DataProcessor createDataProcessor(OrdersProvider ordersProvider)
             throws ImproperArgumentException, ImproperStateException {
 
-        OutputFormatter formatter = this.formatterFactory.createByFormat(ordersProvider);
-        OutputPrinter printer = this.printerFactory.getOutputPrinter(ordersProvider);
+        DataProcessorBuildingBlocks buildingBlocks =
+                this.inOutInputsAnalyser.getDataProcessorBuildingBlocks(ordersProvider);
+
+        OutputFormatter formatter = this.formatterFactory.createByFormat(buildingBlocks.getOutputFormat());
+        OutputPrinter printer = this.printerCreator.createOutputPrinter(ordersProvider, buildingBlocks.getPrinterType());
 
         return new DataProcessor(formatter, printer);
     }

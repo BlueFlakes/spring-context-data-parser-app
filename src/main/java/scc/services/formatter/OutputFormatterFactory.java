@@ -7,23 +7,19 @@ import scc.models.OrdersInterpreter;
 
 @Component
 public class OutputFormatterFactory {
-    public OutputFormatter createByFormat(OrdersProvider ordersProvider) throws ImproperArgumentException {
-        OrdersInterpreter ordersInterpreter = new OrdersInterpreter(ordersProvider);
-        OutputFormat outputFormat = ordersInterpreter.getOutputFormat();
+    public OutputFormatter createByFormat(OutputFormat outputFormat) throws ImproperArgumentException {
+        switch (outputFormat) {
+            case XML:
+                return new XmlOutputFormatter();
 
-        if (outputFormat != null) {
-            switch (outputFormat) {
-                case XML:
-                    return new XmlOutputFormatter();
+            case JSON:
+                return new JsonOutputFormatter();
 
-                case JSON:
-                    return new JsonOutputFormatter();
+            case TABLE:
+                return new TableOutputFormatter();
 
-                case TABLE:
-                    return new TableOutputFormatter();
-            }
+            default:
+                throw new ImproperArgumentException("Invalid argument delivered");
         }
-
-        return new TableOutputFormatter();
     }
 }
