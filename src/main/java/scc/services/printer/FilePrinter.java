@@ -20,6 +20,8 @@ public class FilePrinter implements OutputPrinter {
         PrintWriter printWriter = new PrintWriter(fileWriter);
         printWriter.print(deliveredData);
         printWriter.close();
+
+        System.out.println("Successfully created file.");
     }
 
     private String getFileName() throws InvalidArgumentCombinationException {
