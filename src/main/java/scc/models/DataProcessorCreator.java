@@ -4,6 +4,7 @@ import org.springframework.stereotype.Component;
 import scc.exception.ImproperArgumentException;
 import scc.exception.DataFormatException;
 import scc.exception.ImproperStateException;
+import scc.exception.PrinterFailureException;
 import scc.services.document.Document;
 import scc.services.formatter.OutputFormatter;
 import scc.services.formatter.OutputFormatterFactory;
@@ -45,23 +46,24 @@ public class DataProcessorCreator {
             this.printer = printer;
         }
 
-        public void process(Document document) throws DataFormatException {
-            String formattedData;
+        public void process(Document document) throws DataFormatException, PrinterFailureException {
+            String formattedData = getFormatterResult(document);
+            runPrinter(formattedData);
+        }
 
-            // TODO delegate, too much similar code in one method
-
+        private String getFormatterResult(Document document) throws DataFormatException {
             try {
-                formattedData = this.formatter.getFormattedData(document);
+                return this.formatter.getFormattedData(document);
             } catch (Exception e) {
-                e.printStackTrace();
                 throw new DataFormatException("Broken data format delivered. Expected valid Csv Format");
             }
+        }
 
+        private void runPrinter(String formattedData) throws PrinterFailureException {
             try {
                 this.printer.print(formattedData);
             } catch (Exception e) {
-                e.printStackTrace();
-                System.out.println("do something here...");
+                throw new PrinterFailureException("Printer failed.");
             }
         }
     }
