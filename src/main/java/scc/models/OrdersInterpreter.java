@@ -5,6 +5,7 @@ import scc.exception.InvalidArgumentCombinationException;
 import scc.services.formatter.OutputFormat;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Supplier;
 
 public class OrdersInterpreter {
@@ -21,27 +22,11 @@ public class OrdersInterpreter {
         return settingsAmount == 2 ? basicSettings.get(1) : basicSettings.get(0);
     }
 
-    private String getExpectedOutputFormatName() {
+    public Optional<String> getGivenOutputFormatName() {
         List<String> basicSettings = this.ordersProvider.getBasicSettings();
         int settingsAmount = basicSettings.size();
 
-        return settingsAmount == 2 ? basicSettings.get(0) : null;
-    }
-
-    public OutputFormat getOutputFormat() throws ImproperArgumentException {
-        String expectedOutputFormat = getExpectedOutputFormatName();
-
-        if (expectedOutputFormat != null) {
-            String upperCasedName = expectedOutputFormat.toUpperCase();
-            OutputFormat outputFormat = OutputFormat.getByName(upperCasedName);
-
-            if (outputFormat != null)
-                return outputFormat;
-
-            throw new ImproperArgumentException("Incorrect output formatter identity delivered.");
-        }
-
-        return null;
+        return settingsAmount == 2 ? Optional.of(basicSettings.get(0)) : Optional.empty();
     }
 
     public String getPrefixValueFromAdditionalInputs(final String keyPrefix) throws InvalidArgumentCombinationException {
