@@ -10,7 +10,7 @@ import scc.models.OrdersProvider;
 import scc.services.daoInputHandlers.DaoHandler;
 import scc.services.document.Document;
 
-@Component()
+@Component
 public class SimpleConverter {
     private final DaoHandler daoHandler;
     private final DataProcessorCreator dataProcessorCreator;
